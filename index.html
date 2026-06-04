@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Petani Pintar</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f8f2;
+      color: #222;
+    }
+
+    header {
+      background: #2e7d32;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #2e7d32;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      color: #2e7d32;
+      margin-top: 0;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1b5e20;
+    }
+
+    .info {
+      background: #e8f5e9;
+      padding: 15px;
+      border-left: 5px solid #2e7d32;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background: #1b5e20;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Petani Pintar</h1>
+    <p>Beli hasil panen langsung dari petani</p>
+  </header>
+
+  <section>
+    <div class="info">
+      <strong>Petani Pintar</strong> adalah website untuk menghubungkan petani langsung dengan pembeli.
+      Pembeli bisa pesan hasil tani, ambil sendiri, dikirim, petik langsung, atau melihat proses panen.
+    </div>
+  </section>
+
+  <section>
+    <h2>Produk Panen Hari Ini</h2>
+
+    <div class="card">
+      <h3>Cabai Merah</h3>
+      <p><strong>Petani:</strong> Pak Budi</p>
+      <p><strong>Harga:</strong> Rp28.000/kg</p>
+      <p><strong>Stok:</strong> 50 kg</p>
+      <p><strong>Lokasi:</strong> Lampung Barat</p>
+      <button onclick="pilihProduk('Cabai Merah')">Pesan Cabai</button>
+    </div>
+
+    <div class="card">
+      <h3>Alpukat</h3>
+      <p><strong>Petani:</strong> Bu Sari</p>
+      <p><strong>Harga:</strong> Rp18.000/kg</p>
+      <p><strong>Stok:</strong> 30 kg</p>
+      <p><strong>Lokasi:</strong> Lampung Barat</p>
+      <button onclick="pilihProduk('Alpukat')">Pesan Alpukat</button>
+    </div>
+
+    <div class="card">
+      <h3>Sayur Kangkung</h3>
+      <p><strong>Petani:</strong> Pak Jaya</p>
+      <p><strong>Harga:</strong> Rp5.000/ikat</p>
+      <p><strong>Stok:</strong> 100 ikat</p>
+      <p><strong>Lokasi:</strong> Lampung Barat</p>
+      <button onclick="pilihProduk('Sayur Kangkung')">Pesan Kangkung</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Form Pemesanan</h2>
+
+    <div class="card">
+      <form id="orderForm">
+        <input type="text" id="nama" placeholder="Nama pembeli" required>
+
+        <input type="text" id="whatsapp" placeholder="Nomor WhatsApp pembeli" required>
+
+        <input type="text" id="produkOrder" placeholder="Produk yang dipesan" required>
+
+        <input type="number" id="jumlah" placeholder="Jumlah / kg / ikat" required>
+
+        <select id="metode" required>
+          <option value="">Pilih metode</option>
+          <option value="Kirim ke rumah">Kirim ke rumah</option>
+          <option value="Ambil sendiri">Ambil sendiri</option>
+          <option value="Petik langsung">Petik langsung</option>
+          <option value="Lihat panen live">Lihat panen live</option>
+        </select>
+
+        <textarea id="alamat" placeholder="Alamat pengiriman"></textarea>
+
+        <textarea id="catatan" placeholder="Catatan tambahan"></textarea>
+
+        <button type="submit">Kirim Pesanan</button>
+      </form>
+    </div>
+  </section>
+
+  <section>
+    <h2>Form Daftar Petani</h2>
+
+    <div class="card">
+      <form id="petaniForm">
+        <input type="text" id="namaPetani" placeholder="Nama petani" required>
+
+        <input type="text" id="waPetani" placeholder="Nomor WhatsApp petani" required>
+
+        <textarea id="alamatKebun" placeholder="Alamat kebun" required></textarea>
+
+        <input type="text" id="produkPetani" placeholder="Jenis produk, contoh: Cabai, Alpukat, Beras" required>
+
+        <input type="text" id="stokPetani" placeholder="Stok, contoh: 50 kg" required>
+
+        <input type="text" id="hargaPetani" placeholder="Harga, contoh: Rp28.000/kg" required>
+
+        <input type="text" id="jadwalPanen" placeholder="Jadwal panen, contoh: Besok pagi">
+
+        <input type="text" id="fotoProduk" placeholder="Link foto produk, boleh dikosongkan">
+
+        <button type="submit">Daftar Sebagai Petani</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>Petani Pintar © 2026</p>
+  </footer>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQO8UNpzmhC6Qo9GHQIWKnvPL0LYG2xS65hzCaEHolPXLWBpE_YLf9Gv17Cf6mztLnEA/exec";
+
+    const NOMOR_ADMIN = "6285268322688";
+
+    function pilihProduk(namaProduk) {
+      document.getElementById("produkOrder").value = namaProduk;
+      document.getElementById("orderForm").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const data = {
+        tipe: "order",
+        nama: document.getElementById("nama").value,
+        whatsapp: document.getElementById("whatsapp").value,
+        produk: document.getElementById("produkOrder").value,
+        jumlah: document.getElementById("jumlah").value,
+        metode: document.getElementById("metode").value,
+        alamat: document.getElementById("alamat").value,
+        catatan: document.getElementById("catatan").value
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(data)
+        });
+
+        alert("Pesanan berhasil dikirim!");
+
+        const pesan =
+          "Halo Admin Petani Pintar, saya ingin pesan:%0A%0A" +
+          "Nama: " + data.nama + "%0A" +
+          "WhatsApp: " + data.whatsapp + "%0A" +
+          "Produk: " + data.produk + "%0A" +
+          "Jumlah: " + data.jumlah + "%0A" +
+          "Metode: " + data.metode + "%0A" +
+          "Alamat: " + data.alamat + "%0A" +
+          "Catatan: " + data.catatan;
+
+        window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
+
+        document.getElementById("orderForm").reset();
+
+      } catch (error) {
+        alert("Gagal mengirim pesanan. Coba cek URL Apps Script.");
+        console.log(error);
+      }
+    });
+
+    document.getElementById("petaniForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const data = {
+        tipe: "petani",
+        nama_petani: document.getElementById("namaPetani").value,
+        whatsapp: document.getElementById("waPetani").value,
+        alamat_kebun: document.getElementById("alamatKebun").value,
+        produk: document.getElementById("produkPetani").value,
+        stok: document.getElementById("stokPetani").value,
+        harga: document.getElementById("hargaPetani").value,
+        jadwal_panen: document.getElementById("jadwalPanen").value,
+        foto_produk: document.getElementById("fotoProduk").value
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(data)
+        });
+
+        alert("Data petani berhasil dikirim!");
+        document.getElementById("petaniForm").reset();
+
+      } catch (error) {
+        alert("Gagal mengirim data petani. Coba cek URL Apps Script.");
+        console.log(error);
+      }
+    });
+  </script>
+
+</body>
+</html>
