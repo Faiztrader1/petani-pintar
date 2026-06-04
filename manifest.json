@@ -1,0 +1,19 @@
+{
+  "name": "Petani Pintar",
+  "short_name": "Petani Pintar",
+  "description": "Katalog panen segar langsung dari petani lokal.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f3f6f4",
+  "theme_color": "#16883a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
