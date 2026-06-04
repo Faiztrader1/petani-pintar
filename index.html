@@ -501,6 +501,29 @@
       background: #25d366;
     }
 
+    .danger-btn {
+      width: 100%;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      background: #d62828;
+      color: white;
+      font-weight: bold;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    .small-danger-btn {
+      border: none;
+      background: #ffe5e5;
+      color: #d62828;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
     .hidden {
       display: none;
     }
@@ -598,6 +621,17 @@
       color: #176d32;
     }
 
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .cart-info {
+      flex: 1;
+    }
+
     .close-btn {
       width: 100%;
       border: none;
@@ -607,6 +641,7 @@
       color: white;
       font-weight: bold;
       margin-top: 10px;
+      cursor: pointer;
     }
 
     .bottom-nav {
@@ -751,7 +786,7 @@
           <input type="text" id="nama" placeholder="Nama pembeli" required>
           <input type="text" id="whatsapp" placeholder="Nomor WhatsApp pembeli, contoh 628xxxx" required>
           <input type="text" id="produkOrder" placeholder="Produk yang dipesan" required>
-          <input type="number" id="jumlah" placeholder="Jumlah / kg / ikat" required>
+          <input type="text" inputmode="numeric" id="jumlah" placeholder="Jumlah / kg / ikat" oninput="formatInputAngka(this)" required>
 
           <select id="metode" required>
             <option value="">Pilih metode</option>
@@ -810,8 +845,8 @@
           <input type="text" id="mapsPetani" placeholder="Link Google Maps otomatis" readonly>
 
           <input type="text" id="produkPetani" placeholder="Jenis produk, contoh: Cabai, Alpukat, Beras" required>
-          <input type="text" id="stokPetani" placeholder="Stok, contoh: 50 kg" required>
-          <input type="text" id="hargaPetani" placeholder="Harga, contoh: Rp28.000/kg" required>
+          <input type="text" id="stokPetani" placeholder="Stok, contoh: 50 kg" oninput="formatInputAngka(this)" required>
+          <input type="text" id="hargaPetani" placeholder="Harga, contoh: Rp28.000/kg" oninput="formatInputRupiah(this)" required>
           <input type="text" id="jadwalPanen" placeholder="Jadwal panen, contoh: Besok pagi">
           <input type="text" id="fotoProduk" placeholder="Link foto produk, boleh dikosongkan">
 
@@ -837,6 +872,7 @@
       <h2>Keranjang Pesanan</h2>
       <div id="cartItems"></div>
       <button class="submit-btn" onclick="lanjutOrder()">Lanjut Isi Form Order</button>
+      <button class="danger-btn" onclick="kosongkanKeranjang()">Kosongkan Keranjang</button>
       <button class="close-btn" onclick="tutupKeranjang()">Tutup</button>
     </div>
   </div>
@@ -856,6 +892,60 @@
     let PETANI_DATA = [];
     let kategoriAktif = "semua";
     let keranjang = [];
+
+    function ambilAngka(value) {
+      return String(value || "").replace(/[^\d]/g, "");
+    }
+
+    function formatAngkaIndonesia(value) {
+      const angka = ambilAngka(value);
+      if (!angka) return "";
+      return Number(angka).toLocaleString("id-ID");
+    }
+
+    function formatHarga(value) {
+      const teks = String(value || "").trim();
+      const angka = ambilAngka(teks);
+
+      if (!angka) return teks || "Harga belum diisi";
+
+      let satuan = "";
+
+      if (teks.toLowerCase().includes("/kg")) satuan = "/kg";
+      else if (teks.toLowerCase().includes("/ikat")) satuan = "/ikat";
+      else if (teks.toLowerCase().includes("/pcs")) satuan = "/pcs";
+      else if (teks.toLowerCase().includes("/buah")) satuan = "/buah";
+      else if (teks.toLowerCase().includes("/sisir")) satuan = "/sisir";
+
+      return "Rp" + Number(angka).toLocaleString("id-ID") + satuan;
+    }
+
+    function formatStok(value) {
+      const teks = String(value || "").trim();
+      const angka = ambilAngka(teks);
+
+      if (!angka) return teks || "Stok belum diisi";
+
+      let satuan = "";
+
+      if (teks.toLowerCase().includes("kg")) satuan = " kg";
+      else if (teks.toLowerCase().includes("ikat")) satuan = " ikat";
+      else if (teks.toLowerCase().includes("pcs")) satuan = " pcs";
+      else if (teks.toLowerCase().includes("buah")) satuan = " buah";
+      else if (teks.toLowerCase().includes("sisir")) satuan = " sisir";
+
+      return Number(angka).toLocaleString("id-ID") + satuan;
+    }
+
+    function formatInputAngka(input) {
+      const angka = ambilAngka(input.value);
+      input.value = angka ? Number(angka).toLocaleString("id-ID") : "";
+    }
+
+    function formatInputRupiah(input) {
+      const angka = ambilAngka(input.value);
+      input.value = angka ? "Rp" + Number(angka).toLocaleString("id-ID") : "";
+    }
 
     async function ambilProdukDariSheet() {
       try {
@@ -973,8 +1063,8 @@
                 <span class="seller-link" onclick="bukaProfilPetani('${item.idPetani}')">${item.petani}</span> • ${item.lokasi}<br>${item.panen}
               </div>
               <div class="tag-row">${layanan}</div>
-              <div class="price">${item.harga}</div>
-              <div class="stock">Stok ${item.stok}</div>
+              <div class="price">${formatHarga(item.harga)}</div>
+              <div class="stock">Stok ${formatStok(item.stok)}</div>
               <div class="product-buttons">
                 <button class="btn-order" onclick="pilihProduk('${item.nama}')">Pesan</button>
                 <button class="btn-profile" onclick="bukaProfilPetani('${item.idPetani}')">Petani</button>
@@ -1002,8 +1092,8 @@
         produkHTML += `
           <div class="profile-product">
             <strong>${item.icon || "🌾"} ${item.nama}</strong><br>
-            Harga: ${item.harga}<br>
-            Stok: ${item.stok}<br>
+            Harga: ${formatHarga(item.harga)}<br>
+            Stok: ${formatStok(item.stok)}<br>
             Panen: ${item.panen}<br><br>
             <button class="submit-btn" onclick="pilihProdukDariProfil('${item.nama}')">Pesan Produk Ini</button>
           </div>
@@ -1206,19 +1296,43 @@
         items.innerHTML = '<div class="cart-item">Keranjang masih kosong. Silakan pilih produk dulu.</div>';
       } else {
         items.innerHTML = "";
-        keranjang.forEach(function(item) {
+        keranjang.forEach(function(item, index) {
           items.innerHTML += `
             <div class="cart-item">
-              <strong>${item.nama}</strong><br>
-              ${item.petani} • ${item.lokasi}<br>
-              Harga: ${item.harga}<br>
-              Stok: ${item.stok}
+              <div class="cart-row">
+                <div class="cart-info">
+                  <strong>${item.icon || "🌾"} ${item.nama}</strong><br>
+                  ${item.petani} • ${item.lokasi}<br>
+                  Harga: ${formatHarga(item.harga)}<br>
+                  Stok: ${formatStok(item.stok)}
+                </div>
+                <button class="small-danger-btn" onclick="hapusItemKeranjang(${index})">Hapus</button>
+              </div>
             </div>
           `;
         });
       }
 
       modal.style.display = "flex";
+    }
+
+    function hapusItemKeranjang(index) {
+      keranjang.splice(index, 1);
+      simpanKeranjang();
+      updateKeranjang();
+      bukaKeranjang();
+
+      if (keranjang.length === 0) {
+        document.getElementById("produkOrder").value = "";
+      }
+    }
+
+    function kosongkanKeranjang() {
+      keranjang = [];
+      simpanKeranjang();
+      updateKeranjang();
+      document.getElementById("produkOrder").value = "";
+      bukaKeranjang();
     }
 
     function tutupKeranjang() {
@@ -1228,6 +1342,11 @@
     function lanjutOrder() {
       tutupKeranjang();
       showMode("pembeli");
+
+      if (keranjang.length > 0) {
+        document.getElementById("produkOrder").value = keranjang[0].nama;
+      }
+
       document.getElementById("order").scrollIntoView({ behavior: "smooth" });
     }
 
@@ -1307,7 +1426,7 @@
         return;
       }
 
-      if (Number(data.jumlah) <= 0) {
+      if (Number(ambilAngka(data.jumlah)) <= 0) {
         alert("Jumlah harus lebih dari 0.");
         return;
       }
