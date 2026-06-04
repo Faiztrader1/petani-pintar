@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="110" fill="#16883a"/>
+  <circle cx="256" cy="256" r="165" fill="#e8f8ee"/>
+  <text x="256" y="285" text-anchor="middle" font-size="145" font-family="Arial, sans-serif">🌾</text>
+  <text x="256" y="395" text-anchor="middle" font-size="46" font-weight="700" font-family="Arial, sans-serif" fill="#16883a">PETANI</text>
+</svg>
