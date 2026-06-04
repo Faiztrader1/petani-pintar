@@ -7,156 +7,462 @@
   <title>Petani Pintar</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #f4f8f2;
+      font-family: Arial, sans-serif;
+      background: #f3f6f4;
+      color: #222;
+      padding-bottom: 80px;
+    }
+
+    .app-header {
+      background: linear-gradient(135deg, #16883a, #0f6d2e);
+      color: white;
+      padding: 18px 16px 26px;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .icon-btn {
+      background: rgba(255,255,255,0.2);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .search-box {
+      background: white;
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: #777;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .promo-card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: -10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .promo-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: #e8f8ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+
+    .promo-card h2 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: #176d32;
+    }
+
+    .promo-card p {
+      margin: 0;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 24px 0 12px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 20px;
       color: #222;
     }
 
-    header {
-      background: #2e7d32;
-      color: white;
-      padding: 30px 20px;
+    .section-title span {
+      font-size: 13px;
+      color: #16883a;
+      font-weight: bold;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .category {
+      background: white;
+      border-radius: 16px;
+      padding: 14px 6px;
       text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      font-size: 12px;
+      font-weight: bold;
+      color: #333;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 32px;
+    .category .emoji {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 8px;
     }
 
-    header p {
-      margin-top: 10px;
+    .service-card {
+      background: linear-gradient(135deg, #fff7e0, #ffffff);
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+
+    .service-card h3 {
+      margin: 0 0 4px;
       font-size: 16px;
     }
 
-    section {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
+    .service-card p {
+      margin: 0;
+      font-size: 13px;
+      color: #666;
     }
 
-    h2 {
-      color: #2e7d32;
+    .service-badge {
+      background: #ff9f1c;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      white-space: nowrap;
     }
 
-    .card {
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .product-card {
       background: white;
-      padding: 20px;
-      margin-bottom: 15px;
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .card h3 {
-      color: #2e7d32;
+    .product-img {
+      height: 110px;
+      background: linear-gradient(135deg, #dff5e6, #b8e7c7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+    }
+
+    .product-info {
+      padding: 12px;
+    }
+
+    .product-info h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: #176d32;
+    }
+
+    .seller {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #e85d04;
+      margin-bottom: 4px;
+    }
+
+    .stock {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .product-card button {
+      width: 100%;
+      border: none;
+      background: #16883a;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .product-card button:hover {
+      background: #0f6d2e;
+    }
+
+    .form-card {
+      background: white;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 18px;
+    }
+
+    .form-card h2 {
       margin-top: 0;
+      font-size: 20px;
+      color: #176d32;
     }
 
     input,
     select,
-    textarea,
-    button {
+    textarea {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       margin-bottom: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
+      border-radius: 12px;
+      border: 1px solid #ddd;
       font-size: 15px;
+      outline: none;
+      background: #fafafa;
     }
 
     textarea {
       min-height: 80px;
     }
 
-    button {
-      background: #2e7d32;
-      color: white;
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #16883a;
+      background: white;
+    }
+
+    .submit-btn {
+      width: 100%;
       border: none;
+      padding: 14px;
+      border-radius: 14px;
+      background: #16883a;
+      color: white;
       font-weight: bold;
+      font-size: 15px;
       cursor: pointer;
     }
 
-    button:hover {
-      background: #1b5e20;
+    .submit-btn:hover {
+      background: #0f6d2e;
     }
 
-    .info {
-      background: #e8f5e9;
-      padding: 15px;
-      border-left: 5px solid #2e7d32;
-      border-radius: 8px;
-      margin-bottom: 15px;
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 8px 4px 6px;
+      box-shadow: 0 -4px 14px rgba(0,0,0,0.12);
+      z-index: 20;
     }
 
-    footer {
-      background: #1b5e20;
-      color: white;
+    .bottom-nav a {
+      text-decoration: none;
+      color: #666;
       text-align: center;
-      padding: 15px;
-      margin-top: 20px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .bottom-nav span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+
+    .bottom-nav a.active {
+      color: #16883a;
+    }
+
+    @media (min-width: 700px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Petani Pintar</h1>
-    <p>Beli hasil panen langsung dari petani</p>
+  <header class="app-header">
+    <div class="top-row">
+      <div class="brand">
+        <h1>Petani Pintar</h1>
+        <p>Panen segar langsung dari petani</p>
+      </div>
+      <div class="icon-btn">🛒</div>
+    </div>
+
+    <div class="search-box">
+      🔍 Cari cabai, alpukat, beras, sayur...
+    </div>
   </header>
 
-  <section>
-    <div class="info">
-      <strong>Petani Pintar</strong> adalah website untuk menghubungkan petani langsung dengan pembeli.
-      Pembeli bisa pesan hasil tani, ambil sendiri, dikirim, petik langsung, atau melihat proses panen.
-    </div>
-  </section>
+  <main class="container">
 
-  <section>
-    <h2>Produk Panen Hari Ini</h2>
-
-    <div class="card">
-      <h3>Cabai Merah</h3>
-      <p><strong>Petani:</strong> Pak Budi</p>
-      <p><strong>Harga:</strong> Rp28.000/kg</p>
-      <p><strong>Stok:</strong> 50 kg</p>
-      <p><strong>Lokasi:</strong> Lampung Barat</p>
-      <button onclick="pilihProduk('Cabai Merah')">Pesan Cabai</button>
+    <div class="promo-card">
+      <div class="promo-icon">🌾</div>
+      <div>
+        <h2>Beli langsung dari petani</h2>
+        <p>Pesan hasil tani segar, bisa dikirim, ambil sendiri, petik langsung, atau lihat proses panen.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>Alpukat</h3>
-      <p><strong>Petani:</strong> Bu Sari</p>
-      <p><strong>Harga:</strong> Rp18.000/kg</p>
-      <p><strong>Stok:</strong> 30 kg</p>
-      <p><strong>Lokasi:</strong> Lampung Barat</p>
-      <button onclick="pilihProduk('Alpukat')">Pesan Alpukat</button>
+    <div class="section-title">
+      <h2>Kategori</h2>
+      <span>Lihat semua</span>
     </div>
 
-    <div class="card">
-      <h3>Sayur Kangkung</h3>
-      <p><strong>Petani:</strong> Pak Jaya</p>
-      <p><strong>Harga:</strong> Rp5.000/ikat</p>
-      <p><strong>Stok:</strong> 100 ikat</p>
-      <p><strong>Lokasi:</strong> Lampung Barat</p>
-      <button onclick="pilihProduk('Sayur Kangkung')">Pesan Kangkung</button>
+    <div class="category-grid">
+      <div class="category"><span class="emoji">🌶️</span>Cabai</div>
+      <div class="category"><span class="emoji">🥑</span>Buah</div>
+      <div class="category"><span class="emoji">🥬</span>Sayur</div>
+      <div class="category"><span class="emoji">🍚</span>Beras</div>
+      <div class="category"><span class="emoji">🌽</span>Jagung</div>
+      <div class="category"><span class="emoji">🧺</span>Panen</div>
+      <div class="category"><span class="emoji">🚚</span>Kirim</div>
+      <div class="category"><span class="emoji">📹</span>Live</div>
     </div>
-  </section>
 
-  <section>
-    <h2>Form Pemesanan</h2>
+    <div class="service-card">
+      <div>
+        <h3>Petik langsung di kebun</h3>
+        <p>Datang, pilih, dan rasakan pengalaman panen sendiri.</p>
+      </div>
+      <div class="service-badge">Wisata Panen</div>
+    </div>
 
-    <div class="card">
+    <div class="section-title">
+      <h2>Produk Panen Hari Ini</h2>
+      <span>Segar</span>
+    </div>
+
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img">🌶️</div>
+        <div class="product-info">
+          <h3>Cabai Merah</h3>
+          <div class="seller">Pak Budi • Lampung Barat</div>
+          <div class="price">Rp28.000/kg</div>
+          <div class="stock">Stok 50 kg</div>
+          <button onclick="pilihProduk('Cabai Merah')">Pesan</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🥑</div>
+        <div class="product-info">
+          <h3>Alpukat</h3>
+          <div class="seller">Bu Sari • Lampung Barat</div>
+          <div class="price">Rp18.000/kg</div>
+          <div class="stock">Stok 30 kg</div>
+          <button onclick="pilihProduk('Alpukat')">Pesan</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🥬</div>
+        <div class="product-info">
+          <h3>Kangkung</h3>
+          <div class="seller">Pak Jaya • Lampung Barat</div>
+          <div class="price">Rp5.000/ikat</div>
+          <div class="stock">Stok 100 ikat</div>
+          <button onclick="pilihProduk('Sayur Kangkung')">Pesan</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🍚</div>
+        <div class="product-info">
+          <h3>Beras Lokal</h3>
+          <div class="seller">Pak Rahmat • Lampung Barat</div>
+          <div class="price">Rp13.000/kg</div>
+          <div class="stock">Stok 200 kg</div>
+          <button onclick="pilihProduk('Beras Lokal')">Pesan</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-title" id="order">
+      <h2>Form Pemesanan</h2>
+      <span>Order</span>
+    </div>
+
+    <div class="form-card">
       <form id="orderForm">
         <input type="text" id="nama" placeholder="Nama pembeli" required>
-
         <input type="text" id="whatsapp" placeholder="Nomor WhatsApp pembeli" required>
-
         <input type="text" id="produkOrder" placeholder="Produk yang dipesan" required>
-
         <input type="number" id="jumlah" placeholder="Jumlah / kg / ikat" required>
 
         <select id="metode" required>
@@ -168,43 +474,40 @@
         </select>
 
         <textarea id="alamat" placeholder="Alamat pengiriman"></textarea>
-
         <textarea id="catatan" placeholder="Catatan tambahan"></textarea>
 
-        <button type="submit">Kirim Pesanan</button>
+        <button class="submit-btn" type="submit">Kirim Pesanan</button>
       </form>
     </div>
-  </section>
 
-  <section>
-    <h2>Form Daftar Petani</h2>
+    <div class="section-title" id="petani">
+      <h2>Daftar Petani</h2>
+      <span>Gabung</span>
+    </div>
 
-    <div class="card">
+    <div class="form-card">
       <form id="petaniForm">
         <input type="text" id="namaPetani" placeholder="Nama petani" required>
-
         <input type="text" id="waPetani" placeholder="Nomor WhatsApp petani" required>
-
         <textarea id="alamatKebun" placeholder="Alamat kebun" required></textarea>
-
         <input type="text" id="produkPetani" placeholder="Jenis produk, contoh: Cabai, Alpukat, Beras" required>
-
         <input type="text" id="stokPetani" placeholder="Stok, contoh: 50 kg" required>
-
         <input type="text" id="hargaPetani" placeholder="Harga, contoh: Rp28.000/kg" required>
-
         <input type="text" id="jadwalPanen" placeholder="Jadwal panen, contoh: Besok pagi">
-
         <input type="text" id="fotoProduk" placeholder="Link foto produk, boleh dikosongkan">
 
-        <button type="submit">Daftar Sebagai Petani</button>
+        <button class="submit-btn" type="submit">Daftar Sebagai Petani</button>
       </form>
     </div>
-  </section>
 
-  <footer>
-    <p>Petani Pintar © 2026</p>
-  </footer>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="#" class="active"><span>🏠</span>Home</a>
+    <a href="#order"><span>🛒</span>Order</a>
+    <a href="#petani"><span>👨‍🌾</span>Petani</a>
+    <a href="#"><span>📞</span>Bantuan</a>
+  </nav>
 
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQO8UNpzmhC6Qo9GHQIWKnvPL0LYG2xS65hzCaEHolPXLWBpE_YLf9Gv17Cf6mztLnEA/exec";
@@ -213,7 +516,7 @@
 
     function pilihProduk(namaProduk) {
       document.getElementById("produkOrder").value = namaProduk;
-      document.getElementById("orderForm").scrollIntoView({
+      document.getElementById("order").scrollIntoView({
         behavior: "smooth"
       });
     }
