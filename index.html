@@ -352,17 +352,6 @@
       margin-bottom: 7px;
     }
 
-    .pending {
-      display: inline-block;
-      background: #fff2d8;
-      color: #c77700;
-      padding: 4px 8px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: bold;
-      margin-bottom: 7px;
-    }
-
     .seller {
       font-size: 12px;
       color: #666;
@@ -446,12 +435,6 @@
       padding: 17px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       margin-bottom: 18px;
-    }
-
-    .form-card h2 {
-      margin-top: 0;
-      font-size: 20px;
-      color: #176d32;
     }
 
     .form-note {
@@ -601,7 +584,8 @@
       margin-bottom: 3px;
     }
 
-    .profile-product {
+    .profile-product,
+    .cart-item {
       background: #f6f8f6;
       border-radius: 14px;
       padding: 12px;
@@ -609,16 +593,9 @@
       font-size: 14px;
     }
 
-    .profile-product strong {
+    .profile-product strong,
+    .cart-item strong {
       color: #176d32;
-    }
-
-    .cart-item {
-      background: #f5f7f5;
-      border-radius: 14px;
-      padding: 12px;
-      margin-bottom: 10px;
-      font-size: 14px;
     }
 
     .close-btn {
@@ -701,7 +678,7 @@
       placeholder="🔍 Cari produk, petani, lokasi..."
       onkeyup="cariProduk()"
     >
-    <div class="search-help">Cari cabai, sayur, buah, nama petani, atau lokasi.</div>
+    <div class="search-help">Produk diambil otomatis dari Google Sheet.</div>
   </header>
 
   <main class="container">
@@ -717,7 +694,7 @@
         <div class="promo-icon">🌾</div>
         <div>
           <h2>Beli langsung dari petani</h2>
-          <p>Pesan hasil tani segar, bisa dikirim, ambil sendiri, petik langsung, atau lihat proses panen.</p>
+          <p>Produk hanya tampil jika sudah diverifikasi admin. Stok dan harga mengikuti data Google Sheet.</p>
         </div>
       </div>
 
@@ -757,7 +734,7 @@
         <button onclick="lihatSemuaProduk()">Reset</button>
       </div>
 
-      <div id="resultInfo" class="result-info">Menampilkan semua produk petani.</div>
+      <div id="resultInfo" class="result-info">Memuat produk dari Google Sheet...</div>
       <div id="produkList" class="product-grid"></div>
 
       <div class="section-title" id="order">
@@ -767,7 +744,7 @@
 
       <div class="form-card">
         <div class="form-note">
-          Isi order dengan benar. Admin akan konfirmasi lewat WhatsApp agar tidak ada order palsu.
+          Order akan masuk ke Google Sheet dan admin akan konfirmasi lewat WhatsApp. Stok final tetap dikonfirmasi admin.
         </div>
 
         <form id="orderForm">
@@ -794,7 +771,7 @@
 
           <textarea id="catatan" placeholder="Catatan tambahan"></textarea>
 
-          <button class="submit-btn" type="submit">Kirim Pesanan</button>
+          <button id="btnKirimOrder" class="submit-btn" type="submit">Kirim Pesanan</button>
         </form>
       </div>
 
@@ -806,7 +783,7 @@
         <div class="promo-icon">👨‍🌾</div>
         <div>
           <h2>Gabung sebagai petani</h2>
-          <p>Daftarkan data kebun dan produk. Admin akan verifikasi agar pembeli lebih percaya.</p>
+          <p>Daftarkan data kebun dan produk. Admin akan verifikasi sebelum produk tampil di website.</p>
         </div>
       </div>
 
@@ -875,166 +852,81 @@
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQO8UNpzmhC6Qo9GHQIWKnvPL0LYG2xS65hzCaEHolPXLWBpE_YLf9Gv17Cf6mztLnEA/exec";
     const NOMOR_ADMIN = "6285268322688";
 
-    const PETANI_DATA = [
-      {
-        id: "pak-budi",
-        nama: "Pak Budi",
-        lokasi: "Lampung Barat",
-        status: "Terverifikasi",
-        avatar: "👨‍🌾",
-        layanan: "Kirim, live panen",
-        catatan: "Petani cabai dan sayuran lokal."
-      },
-      {
-        id: "bu-sari",
-        nama: "Bu Sari",
-        lokasi: "Lampung Barat",
-        status: "Terverifikasi",
-        avatar: "👩‍🌾",
-        layanan: "Kirim, petik langsung, live panen",
-        catatan: "Petani buah dan kebun alpukat."
-      },
-      {
-        id: "pak-jaya",
-        nama: "Pak Jaya",
-        lokasi: "Lampung Barat",
-        status: "Terverifikasi",
-        avatar: "👨‍🌾",
-        layanan: "Kirim",
-        catatan: "Petani sayuran segar."
-      },
-      {
-        id: "pak-rahmat",
-        nama: "Pak Rahmat",
-        lokasi: "Lampung Barat",
-        status: "Terverifikasi",
-        avatar: "👨‍🌾",
-        layanan: "Kirim",
-        catatan: "Petani beras lokal."
-      }
-    ];
-
-    const PRODUK_DATA = [
-      {
-        nama: "Cabai Merah",
-        kategori: "cabai",
-        icon: "🌶️",
-        idPetani: "pak-budi",
-        petani: "Pak Budi",
-        lokasi: "Lampung Barat",
-        harga: "Rp28.000/kg",
-        stok: "50 kg",
-        panen: "Panen pagi",
-        status: "Terverifikasi",
-        live: true,
-        petik: false
-      },
-      {
-        nama: "Cabai Rawit",
-        kategori: "cabai",
-        icon: "🌶️",
-        idPetani: "pak-budi",
-        petani: "Pak Budi",
-        lokasi: "Lampung Barat",
-        harga: "Rp35.000/kg",
-        stok: "25 kg",
-        panen: "Panen sore",
-        status: "Terverifikasi",
-        live: true,
-        petik: false
-      },
-      {
-        nama: "Tomat Segar",
-        kategori: "sayur",
-        icon: "🍅",
-        idPetani: "pak-budi",
-        petani: "Pak Budi",
-        lokasi: "Lampung Barat",
-        harga: "Rp10.000/kg",
-        stok: "40 kg",
-        panen: "Panen hari ini",
-        status: "Terverifikasi",
-        live: false,
-        petik: false
-      },
-      {
-        nama: "Alpukat Mentega",
-        kategori: "buah",
-        icon: "🥑",
-        idPetani: "bu-sari",
-        petani: "Bu Sari",
-        lokasi: "Lampung Barat",
-        harga: "Rp18.000/kg",
-        stok: "30 kg",
-        panen: "Bisa petik langsung",
-        status: "Terverifikasi",
-        live: true,
-        petik: true
-      },
-      {
-        nama: "Pisang Kepok",
-        kategori: "buah",
-        icon: "🍌",
-        idPetani: "bu-sari",
-        petani: "Bu Sari",
-        lokasi: "Lampung Barat",
-        harga: "Rp12.000/sisir",
-        stok: "40 sisir",
-        panen: "Siap kirim",
-        status: "Terverifikasi",
-        live: false,
-        petik: true
-      },
-      {
-        nama: "Kangkung Segar",
-        kategori: "sayur",
-        icon: "🥬",
-        idPetani: "pak-jaya",
-        petani: "Pak Jaya",
-        lokasi: "Lampung Barat",
-        harga: "Rp5.000/ikat",
-        stok: "100 ikat",
-        panen: "Panen hari ini",
-        status: "Terverifikasi",
-        live: false,
-        petik: false
-      },
-      {
-        nama: "Bayam Segar",
-        kategori: "sayur",
-        icon: "🥬",
-        idPetani: "pak-jaya",
-        petani: "Pak Jaya",
-        lokasi: "Lampung Barat",
-        harga: "Rp4.000/ikat",
-        stok: "80 ikat",
-        panen: "Panen pagi",
-        status: "Terverifikasi",
-        live: false,
-        petik: false
-      },
-      {
-        nama: "Beras Lokal",
-        kategori: "beras",
-        icon: "🍚",
-        idPetani: "pak-rahmat",
-        petani: "Pak Rahmat",
-        lokasi: "Lampung Barat",
-        harga: "Rp13.000/kg",
-        stok: "200 kg",
-        panen: "Siap kirim",
-        status: "Terverifikasi",
-        live: false,
-        petik: false
-      }
-    ];
-
+    let PRODUK_DATA = [];
+    let PETANI_DATA = [];
     let kategoriAktif = "semua";
     let keranjang = [];
+
+    async function ambilProdukDariSheet() {
+      try {
+        const response = await fetch(SCRIPT_URL);
+        const data = await response.json();
+
+        if (data.status === "error") {
+          renderProduk([], "Gagal mengambil produk: " + data.message);
+          return;
+        }
+
+        PRODUK_DATA = data;
+        buatDataPetaniDariProduk();
+
+        renderPetani();
+        renderProduk(PRODUK_DATA, "Menampilkan produk terverifikasi dari Google Sheet.");
+      } catch (error) {
+        console.log(error);
+        renderProduk([], "Gagal mengambil data produk. Coba refresh halaman.");
+      }
+    }
+
+    function buatDataPetaniDariProduk() {
+      const mapPetani = {};
+
+      PRODUK_DATA.forEach(function(item) {
+        if (!mapPetani[item.idPetani]) {
+          mapPetani[item.idPetani] = {
+            id: item.idPetani,
+            nama: item.petani,
+            lokasi: item.lokasi,
+            status: "Terverifikasi",
+            avatar: "👨‍🌾",
+            layanan: buatLayananPetani(item.idPetani),
+            catatan: "Petani terverifikasi dengan produk aktif di Petani Pintar."
+          };
+        }
+      });
+
+      PETANI_DATA = Object.values(mapPetani);
+    }
+
+    function buatLayananPetani(idPetani) {
+      const produkPetani = PRODUK_DATA.filter(function(item) {
+        return item.idPetani === idPetani;
+      });
+
+      const adaLive = produkPetani.some(function(item) {
+        return item.live;
+      });
+
+      const adaPetik = produkPetani.some(function(item) {
+        return item.petik;
+      });
+
+      const layanan = ["Kirim"];
+
+      if (adaPetik) layanan.push("Petik langsung");
+      if (adaLive) layanan.push("Live panen");
+
+      return layanan.join(", ");
+    }
 
     function renderPetani() {
       const sellerList = document.getElementById("sellerList");
       sellerList.innerHTML = "";
+
+      if (PETANI_DATA.length === 0) {
+        sellerList.innerHTML = '<div class="empty">Belum ada petani terverifikasi.</div>';
+        return;
+      }
 
       PETANI_DATA.forEach(function(petani) {
         const jumlahProduk = PRODUK_DATA.filter(function(item) {
@@ -1059,31 +951,23 @@
       const resultInfo = document.getElementById("resultInfo");
 
       produkList.innerHTML = "";
-
-      if (pesanInfo) {
-        resultInfo.innerText = pesanInfo;
-      } else {
-        resultInfo.innerText = "Menampilkan " + listProduk.length + " produk petani.";
-      }
+      resultInfo.innerText = pesanInfo || "Menampilkan " + listProduk.length + " produk petani.";
 
       if (listProduk.length === 0) {
-        produkList.innerHTML = '<div class="empty">Produk tidak ditemukan. Coba klik Lihat semua atau cari kata lain.</div>';
+        produkList.innerHTML = '<div class="empty">Produk tidak ditemukan. Pastikan sheet Produk sudah diisi dan Status = Terverifikasi.</div>';
         return;
       }
 
       listProduk.forEach(function(item) {
-        const statusClass = item.status === "Terverifikasi" ? "verified" : "pending";
-        const statusText = item.status === "Terverifikasi" ? "✅ Petani Terverifikasi" : "⏳ Menunggu Verifikasi";
-
         let layanan = "";
         if (item.live) layanan += '<span class="tag">📹 Live panen</span>';
         if (item.petik) layanan += '<span class="tag">🧺 Petik langsung</span>';
 
         produkList.innerHTML += `
           <div class="product-card">
-            <div class="product-img">${item.icon}</div>
+            <div class="product-img">${item.icon || "🌾"}</div>
             <div class="product-info">
-              <span class="${statusClass}">${statusText}</span>
+              <span class="verified">✅ Petani Terverifikasi</span>
               <h3>${item.nama}</h3>
               <div class="seller">
                 <span class="seller-link" onclick="bukaProfilPetani('${item.idPetani}')">${item.petani}</span> • ${item.lokasi}<br>${item.panen}
@@ -1117,10 +1001,10 @@
       produkPetani.forEach(function(item) {
         produkHTML += `
           <div class="profile-product">
-            <strong>${item.icon} ${item.nama}</strong><br>
+            <strong>${item.icon || "🌾"} ${item.nama}</strong><br>
             Harga: ${item.harga}<br>
             Stok: ${item.stok}<br>
-            Panen: ${item.panen}<br>
+            Panen: ${item.panen}<br><br>
             <button class="submit-btn" onclick="pilihProdukDariProfil('${item.nama}')">Pesan Produk Ini</button>
           </div>
         `;
@@ -1142,7 +1026,7 @@
         </div>
 
         <div class="form-note">
-          Layanan: ${petani.layanan}. Semua produk dari petani ini sudah melewati pengecekan admin sebelum ditampilkan.
+          Layanan: ${petani.layanan}. Semua produk dari petani ini tampil setelah status produk Terverifikasi.
         </div>
 
         <h2>Produk dari ${petani.nama}</h2>
@@ -1172,10 +1056,10 @@
       const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
 
       let hasil = PRODUK_DATA.filter(function(item) {
-        const cocokNama = item.nama.toLowerCase().includes(keyword);
-        const cocokPetani = item.petani.toLowerCase().includes(keyword);
-        const cocokKategori = item.kategori.toLowerCase().includes(keyword);
-        const cocokLokasi = item.lokasi.toLowerCase().includes(keyword);
+        const cocokNama = String(item.nama).toLowerCase().includes(keyword);
+        const cocokPetani = String(item.petani).toLowerCase().includes(keyword);
+        const cocokKategori = String(item.kategori).toLowerCase().includes(keyword);
+        const cocokLokasi = String(item.lokasi).toLowerCase().includes(keyword);
 
         const cocokSearch = cocokNama || cocokPetani || cocokKategori || cocokLokasi;
         const cocokKategoriAktif = kategoriAktif === "semua" || item.kategori === kategoriAktif;
@@ -1293,13 +1177,21 @@
 
       if (produk) {
         keranjang = [produk];
+        simpanKeranjang();
         updateKeranjang();
       }
 
       document.getElementById("produkOrder").value = namaProduk;
-      document.getElementById("order").scrollIntoView({
-        behavior: "smooth"
-      });
+      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function simpanKeranjang() {
+      localStorage.setItem("keranjangPetaniPintar", JSON.stringify(keranjang));
+    }
+
+    function ambilKeranjang() {
+      const data = localStorage.getItem("keranjangPetaniPintar");
+      keranjang = data ? JSON.parse(data) : [];
     }
 
     function updateKeranjang() {
@@ -1384,19 +1276,49 @@
     document.getElementById("orderForm").addEventListener("submit", async function(e) {
       e.preventDefault();
 
+      const btn = document.getElementById("btnKirimOrder");
+
       const data = {
         tipe: "order",
-        nama: document.getElementById("nama").value,
-        whatsapp: document.getElementById("whatsapp").value,
-        produk: document.getElementById("produkOrder").value,
+        nama: document.getElementById("nama").value.trim(),
+        whatsapp: document.getElementById("whatsapp").value.trim(),
+        produk: document.getElementById("produkOrder").value.trim(),
         jumlah: document.getElementById("jumlah").value,
         metode: document.getElementById("metode").value,
-        alamat: document.getElementById("alamat").value,
+        alamat: document.getElementById("alamat").value.trim(),
         latitude: document.getElementById("latitudeOrder").value,
         longitude: document.getElementById("longitudeOrder").value,
         link_maps: document.getElementById("mapsOrder").value,
-        catatan: document.getElementById("catatan").value
+        catatan: document.getElementById("catatan").value.trim()
       };
+
+      if (data.nama.length < 3) {
+        alert("Nama minimal 3 huruf.");
+        return;
+      }
+
+      if (!data.whatsapp.startsWith("62")) {
+        alert("Nomor WhatsApp harus diawali 62. Contoh: 6285268322688");
+        return;
+      }
+
+      if (!data.produk) {
+        alert("Produk wajib dipilih.");
+        return;
+      }
+
+      if (Number(data.jumlah) <= 0) {
+        alert("Jumlah harus lebih dari 0.");
+        return;
+      }
+
+      if (!data.metode) {
+        alert("Pilih metode terlebih dahulu.");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerText = "Mengirim...";
 
       try {
         await fetch(SCRIPT_URL, {
@@ -1422,12 +1344,16 @@
 
         document.getElementById("orderForm").reset();
         keranjang = [];
+        simpanKeranjang();
         updateKeranjang();
 
       } catch (error) {
         alert("Gagal mengirim pesanan. Coba cek koneksi.");
         console.log(error);
       }
+
+      btn.disabled = false;
+      btn.innerText = "Kirim Pesanan";
     });
 
     document.getElementById("petaniForm").addEventListener("submit", async function(e) {
@@ -1448,6 +1374,16 @@
         jadwal_panen: document.getElementById("jadwalPanen").value,
         foto_produk: document.getElementById("fotoProduk").value
       };
+
+      if (!data.whatsapp.startsWith("62")) {
+        alert("Nomor WhatsApp harus diawali 62.");
+        return;
+      }
+
+      if (data.nik.length < 10) {
+        alert("NIK terlalu pendek. Cek kembali.");
+        return;
+      }
 
       try {
         await fetch(SCRIPT_URL, {
@@ -1490,6 +1426,10 @@
       window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
     }
 
+    function scrollKePetani() {
+      document.getElementById("sellerList").scrollIntoView({ behavior: "smooth" });
+    }
+
     function scrollToTop() {
       window.scrollTo({
         top: 0,
@@ -1497,9 +1437,9 @@
       });
     }
 
-    renderPetani();
-    renderProduk(PRODUK_DATA, "Menampilkan semua produk petani.");
+    ambilKeranjang();
     updateKeranjang();
+    ambilProdukDariSheet();
   </script>
 
 </body>
