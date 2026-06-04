@@ -16,19 +16,19 @@
       font-family: Arial, sans-serif;
       background: #f3f6f4;
       color: #222;
-      padding-bottom: 85px;
+      padding-bottom: 90px;
     }
 
     .app-header {
       background: linear-gradient(135deg, #16883a, #0f6d2e);
       color: white;
       padding: 20px 16px 28px;
-      border-bottom-left-radius: 26px;
-      border-bottom-right-radius: 26px;
+      border-bottom-left-radius: 28px;
+      border-bottom-right-radius: 28px;
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+      box-shadow: 0 5px 16px rgba(0,0,0,0.18);
     }
 
     .top-row {
@@ -40,35 +40,57 @@
 
     .brand h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 29px;
       font-weight: 800;
     }
 
     .brand p {
-      margin: 5px 0 0;
+      margin: 6px 0 0;
       font-size: 14px;
       opacity: 0.95;
     }
 
-    .header-icon {
+    .cart-btn {
       background: rgba(255,255,255,0.18);
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 25px;
+      cursor: pointer;
+      position: relative;
+      border: none;
+      color: white;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: #ff9f1c;
+      color: white;
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      font-weight: bold;
     }
 
     .search-input {
       width: 100%;
       border: none;
-      border-radius: 16px;
+      border-radius: 17px;
       padding: 15px 16px;
-      font-size: 15px;
+      font-size: 16px;
       outline: none;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .search-help {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.9);
     }
 
     .container {
@@ -84,7 +106,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: -6px;
+      margin-top: -8px;
       box-shadow: 0 4px 14px rgba(0,0,0,0.08);
     }
 
@@ -149,7 +171,7 @@
 
     .section-title h2 {
       margin: 0;
-      font-size: 22px;
+      font-size: 23px;
       color: #222;
     }
 
@@ -202,11 +224,12 @@
       justify-content: space-between;
       gap: 12px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      cursor: pointer;
     }
 
     .service-card h3 {
       margin: 0 0 5px;
-      font-size: 17px;
+      font-size: 18px;
     }
 
     .service-card p {
@@ -223,6 +246,67 @@
       font-size: 12px;
       font-weight: bold;
       white-space: nowrap;
+    }
+
+    .seller-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .seller-card {
+      background: white;
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .seller-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: #e8f8ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 31px;
+      flex-shrink: 0;
+    }
+
+    .seller-card h3 {
+      margin: 0 0 5px;
+      color: #176d32;
+    }
+
+    .seller-card p {
+      margin: 0;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .seller-card button {
+      border: none;
+      background: #16883a;
+      color: white;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    .result-info {
+      background: #eef8f1;
+      border-radius: 14px;
+      padding: 12px;
+      color: #176d32;
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 13px;
     }
 
     .product-grid {
@@ -286,6 +370,12 @@
       line-height: 1.4;
     }
 
+    .seller-link {
+      color: #16883a;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
     .price {
       font-size: 16px;
       font-weight: bold;
@@ -299,15 +389,46 @@
       margin-bottom: 10px;
     }
 
-    .product-card button {
+    .tag-row {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      background: #f1f1f1;
+      padding: 4px 7px;
+      border-radius: 999px;
+      font-size: 10px;
+      color: #555;
+      font-weight: bold;
+    }
+
+    .product-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .product-buttons button {
       width: 100%;
       border: none;
-      background: #16883a;
-      color: white;
-      padding: 11px;
+      padding: 11px 7px;
       border-radius: 11px;
       font-weight: bold;
       cursor: pointer;
+      font-size: 12px;
+    }
+
+    .btn-order {
+      background: #16883a;
+      color: white;
+    }
+
+    .btn-profile {
+      background: #eef8f1;
+      color: #16883a;
     }
 
     .empty {
@@ -401,6 +522,116 @@
       display: none;
     }
 
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 30;
+      padding: 18px;
+      align-items: flex-end;
+    }
+
+    .modal-card {
+      background: white;
+      width: 100%;
+      max-width: 720px;
+      margin: auto;
+      border-radius: 22px;
+      padding: 18px;
+      max-height: 84vh;
+      overflow: auto;
+    }
+
+    .modal-card h2 {
+      margin-top: 0;
+      color: #176d32;
+    }
+
+    .profile-head {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .profile-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      background: #e8f8ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      flex-shrink: 0;
+    }
+
+    .profile-head h2 {
+      margin: 0 0 5px;
+    }
+
+    .profile-head p {
+      margin: 0;
+      color: #666;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .stat-box {
+      background: #f4f8f2;
+      border-radius: 14px;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .stat-box strong {
+      display: block;
+      color: #176d32;
+      font-size: 16px;
+      margin-bottom: 3px;
+    }
+
+    .profile-product {
+      background: #f6f8f6;
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .profile-product strong {
+      color: #176d32;
+    }
+
+    .cart-item {
+      background: #f5f7f5;
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .close-btn {
+      width: 100%;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      background: #222;
+      color: white;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -440,6 +671,10 @@
       .category-grid {
         grid-template-columns: repeat(6, 1fr);
       }
+
+      .seller-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
@@ -452,16 +687,21 @@
         <h1>Petani Pintar</h1>
         <p>Panen segar langsung dari petani</p>
       </div>
-      <div class="header-icon">🛒</div>
+
+      <button class="cart-btn" onclick="bukaKeranjang()">
+        🛒
+        <span id="cartCount" class="cart-count">0</span>
+      </button>
     </div>
 
     <input
       type="text"
       id="searchInput"
       class="search-input"
-      placeholder="🔍 Cari cabai, alpukat, beras, sayur..."
+      placeholder="🔍 Cari produk, petani, lokasi..."
       onkeyup="cariProduk()"
     >
+    <div class="search-help">Cari cabai, sayur, buah, nama petani, atau lokasi.</div>
   </header>
 
   <main class="container">
@@ -482,6 +722,13 @@
       </div>
 
       <div class="section-title">
+        <h2>Petani Terverifikasi</h2>
+        <button onclick="scrollKePetani()">Lihat profil</button>
+      </div>
+
+      <div id="sellerList" class="seller-grid"></div>
+
+      <div class="section-title">
         <h2>Kategori</h2>
         <button onclick="lihatSemuaProduk()">Lihat semua</button>
       </div>
@@ -493,23 +740,24 @@
         <div class="category" onclick="filterKategori('sayur', this)"><span class="emoji">🥬</span>Sayur</div>
         <div class="category" onclick="filterKategori('beras', this)"><span class="emoji">🍚</span>Beras</div>
         <div class="category" onclick="filterKategori('jagung', this)"><span class="emoji">🌽</span>Jagung</div>
-        <div class="category" onclick="filterKategori('panen', this)"><span class="emoji">🧺</span>Panen</div>
-        <div class="category" onclick="filterKategori('live', this)"><span class="emoji">📹</span>Live</div>
+        <div class="category" onclick="filterLayanan('petik', this)"><span class="emoji">🧺</span>Petik</div>
+        <div class="category" onclick="filterLayanan('live', this)"><span class="emoji">📹</span>Live</div>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" onclick="filterWisataPanen()">
         <div>
-          <h3>Petik langsung di kebun</h3>
-          <p>Datang, pilih, dan rasakan pengalaman panen sendiri.</p>
+          <h3>Wisata Panen / Petik Langsung</h3>
+          <p>Klik untuk melihat produk yang bisa dipetik langsung di kebun.</p>
         </div>
-        <div class="service-badge">Wisata Panen</div>
+        <div class="service-badge">Lihat</div>
       </div>
 
-      <div class="section-title">
+      <div class="section-title" id="produk">
         <h2>Produk Petani</h2>
         <button onclick="lihatSemuaProduk()">Reset</button>
       </div>
 
+      <div id="resultInfo" class="result-info">Menampilkan semua produk petani.</div>
       <div id="produkList" class="product-grid"></div>
 
       <div class="section-title" id="order">
@@ -519,7 +767,7 @@
 
       <div class="form-card">
         <div class="form-note">
-          Isi order dengan benar. Setelah kirim, admin akan konfirmasi lewat WhatsApp untuk mengurangi order palsu.
+          Isi order dengan benar. Admin akan konfirmasi lewat WhatsApp agar tidak ada order palsu.
         </div>
 
         <form id="orderForm">
@@ -569,7 +817,7 @@
 
       <div class="form-card">
         <div class="form-note">
-          Data NIK/KTP hanya untuk admin dan tidak ditampilkan ke pembeli. Setelah daftar, kirim foto KTP dan foto kebun ke WhatsApp admin untuk verifikasi.
+          Data NIK/KTP hanya untuk admin dan tidak ditampilkan ke pembeli. Setelah daftar, kirim foto KTP, foto kebun, dan foto produk ke WhatsApp admin.
         </div>
 
         <form id="petaniForm">
@@ -593,7 +841,7 @@
           <button class="submit-btn" type="submit">Daftar Sebagai Petani</button>
         </form>
 
-        <a class="wa-btn" id="waVerifikasi" href="#" onclick="bukaVerifikasiWA()">Kirim KTP & Foto Kebun via WhatsApp</a>
+        <a class="wa-btn" href="#" onclick="bukaVerifikasiWA()">Kirim KTP & Foto Kebun via WhatsApp</a>
       </div>
 
     </section>
@@ -607,80 +855,219 @@
     <a href="#" onclick="bukaBantuan()"><span>📞</span>Bantuan</a>
   </nav>
 
+  <div id="cartModal" class="modal-bg">
+    <div class="modal-card">
+      <h2>Keranjang Pesanan</h2>
+      <div id="cartItems"></div>
+      <button class="submit-btn" onclick="lanjutOrder()">Lanjut Isi Form Order</button>
+      <button class="close-btn" onclick="tutupKeranjang()">Tutup</button>
+    </div>
+  </div>
+
+  <div id="profileModal" class="modal-bg">
+    <div class="modal-card">
+      <div id="profileContent"></div>
+      <button class="close-btn" onclick="tutupProfilPetani()">Tutup Profil</button>
+    </div>
+  </div>
+
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyQO8UNpzmhC6Qo9GHQIWKnvPL0LYG2xS65hzCaEHolPXLWBpE_YLf9Gv17Cf6mztLnEA/exec";
-
     const NOMOR_ADMIN = "6285268322688";
 
-    // ==========================
-    // DATA PRODUK REAL MASUKKAN DI SINI
-    // ==========================
+    const PETANI_DATA = [
+      {
+        id: "pak-budi",
+        nama: "Pak Budi",
+        lokasi: "Lampung Barat",
+        status: "Terverifikasi",
+        avatar: "👨‍🌾",
+        layanan: "Kirim, live panen",
+        catatan: "Petani cabai dan sayuran lokal."
+      },
+      {
+        id: "bu-sari",
+        nama: "Bu Sari",
+        lokasi: "Lampung Barat",
+        status: "Terverifikasi",
+        avatar: "👩‍🌾",
+        layanan: "Kirim, petik langsung, live panen",
+        catatan: "Petani buah dan kebun alpukat."
+      },
+      {
+        id: "pak-jaya",
+        nama: "Pak Jaya",
+        lokasi: "Lampung Barat",
+        status: "Terverifikasi",
+        avatar: "👨‍🌾",
+        layanan: "Kirim",
+        catatan: "Petani sayuran segar."
+      },
+      {
+        id: "pak-rahmat",
+        nama: "Pak Rahmat",
+        lokasi: "Lampung Barat",
+        status: "Terverifikasi",
+        avatar: "👨‍🌾",
+        layanan: "Kirim",
+        catatan: "Petani beras lokal."
+      }
+    ];
+
     const PRODUK_DATA = [
       {
         nama: "Cabai Merah",
         kategori: "cabai",
         icon: "🌶️",
+        idPetani: "pak-budi",
         petani: "Pak Budi",
         lokasi: "Lampung Barat",
         harga: "Rp28.000/kg",
         stok: "50 kg",
         panen: "Panen pagi",
-        status: "Terverifikasi"
+        status: "Terverifikasi",
+        live: true,
+        petik: false
+      },
+      {
+        nama: "Cabai Rawit",
+        kategori: "cabai",
+        icon: "🌶️",
+        idPetani: "pak-budi",
+        petani: "Pak Budi",
+        lokasi: "Lampung Barat",
+        harga: "Rp35.000/kg",
+        stok: "25 kg",
+        panen: "Panen sore",
+        status: "Terverifikasi",
+        live: true,
+        petik: false
+      },
+      {
+        nama: "Tomat Segar",
+        kategori: "sayur",
+        icon: "🍅",
+        idPetani: "pak-budi",
+        petani: "Pak Budi",
+        lokasi: "Lampung Barat",
+        harga: "Rp10.000/kg",
+        stok: "40 kg",
+        panen: "Panen hari ini",
+        status: "Terverifikasi",
+        live: false,
+        petik: false
       },
       {
         nama: "Alpukat Mentega",
         kategori: "buah",
         icon: "🥑",
+        idPetani: "bu-sari",
         petani: "Bu Sari",
         lokasi: "Lampung Barat",
         harga: "Rp18.000/kg",
         stok: "30 kg",
         panen: "Bisa petik langsung",
-        status: "Terverifikasi"
+        status: "Terverifikasi",
+        live: true,
+        petik: true
+      },
+      {
+        nama: "Pisang Kepok",
+        kategori: "buah",
+        icon: "🍌",
+        idPetani: "bu-sari",
+        petani: "Bu Sari",
+        lokasi: "Lampung Barat",
+        harga: "Rp12.000/sisir",
+        stok: "40 sisir",
+        panen: "Siap kirim",
+        status: "Terverifikasi",
+        live: false,
+        petik: true
       },
       {
         nama: "Kangkung Segar",
         kategori: "sayur",
         icon: "🥬",
+        idPetani: "pak-jaya",
         petani: "Pak Jaya",
         lokasi: "Lampung Barat",
         harga: "Rp5.000/ikat",
         stok: "100 ikat",
         panen: "Panen hari ini",
-        status: "Terverifikasi"
+        status: "Terverifikasi",
+        live: false,
+        petik: false
+      },
+      {
+        nama: "Bayam Segar",
+        kategori: "sayur",
+        icon: "🥬",
+        idPetani: "pak-jaya",
+        petani: "Pak Jaya",
+        lokasi: "Lampung Barat",
+        harga: "Rp4.000/ikat",
+        stok: "80 ikat",
+        panen: "Panen pagi",
+        status: "Terverifikasi",
+        live: false,
+        petik: false
       },
       {
         nama: "Beras Lokal",
         kategori: "beras",
         icon: "🍚",
+        idPetani: "pak-rahmat",
         petani: "Pak Rahmat",
         lokasi: "Lampung Barat",
         harga: "Rp13.000/kg",
         stok: "200 kg",
         panen: "Siap kirim",
-        status: "Terverifikasi"
-      },
-      {
-        nama: "Jagung Manis",
-        kategori: "jagung",
-        icon: "🌽",
-        petani: "Pak Hasan",
-        lokasi: "Lampung Barat",
-        harga: "Rp6.000/buah",
-        stok: "150 buah",
-        panen: "Panen besok",
-        status: "Menunggu Verifikasi"
+        status: "Terverifikasi",
+        live: false,
+        petik: false
       }
     ];
 
     let kategoriAktif = "semua";
+    let keranjang = [];
 
-    function renderProduk(listProduk) {
+    function renderPetani() {
+      const sellerList = document.getElementById("sellerList");
+      sellerList.innerHTML = "";
+
+      PETANI_DATA.forEach(function(petani) {
+        const jumlahProduk = PRODUK_DATA.filter(function(item) {
+          return item.idPetani === petani.id;
+        }).length;
+
+        sellerList.innerHTML += `
+          <div class="seller-card">
+            <div class="seller-avatar">${petani.avatar}</div>
+            <div>
+              <h3>${petani.nama}</h3>
+              <p>✅ ${petani.status}<br>📍 ${petani.lokasi}<br>🌾 ${jumlahProduk} produk tersedia</p>
+              <button onclick="bukaProfilPetani('${petani.id}')">Lihat Profil</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderProduk(listProduk, pesanInfo) {
       const produkList = document.getElementById("produkList");
+      const resultInfo = document.getElementById("resultInfo");
+
       produkList.innerHTML = "";
 
+      if (pesanInfo) {
+        resultInfo.innerText = pesanInfo;
+      } else {
+        resultInfo.innerText = "Menampilkan " + listProduk.length + " produk petani.";
+      }
+
       if (listProduk.length === 0) {
-        produkList.innerHTML = '<div class="empty">Produk tidak ditemukan.</div>';
+        produkList.innerHTML = '<div class="empty">Produk tidak ditemukan. Coba klik Lihat semua atau cari kata lain.</div>';
         return;
       }
 
@@ -688,24 +1075,101 @@
         const statusClass = item.status === "Terverifikasi" ? "verified" : "pending";
         const statusText = item.status === "Terverifikasi" ? "✅ Petani Terverifikasi" : "⏳ Menunggu Verifikasi";
 
+        let layanan = "";
+        if (item.live) layanan += '<span class="tag">📹 Live panen</span>';
+        if (item.petik) layanan += '<span class="tag">🧺 Petik langsung</span>';
+
         produkList.innerHTML += `
-          <div class="product-card" data-kategori="${item.kategori}" data-nama="${item.nama.toLowerCase()}">
+          <div class="product-card">
             <div class="product-img">${item.icon}</div>
             <div class="product-info">
               <span class="${statusClass}">${statusText}</span>
               <h3>${item.nama}</h3>
-              <div class="seller">${item.petani} • ${item.lokasi}<br>${item.panen}</div>
+              <div class="seller">
+                <span class="seller-link" onclick="bukaProfilPetani('${item.idPetani}')">${item.petani}</span> • ${item.lokasi}<br>${item.panen}
+              </div>
+              <div class="tag-row">${layanan}</div>
               <div class="price">${item.harga}</div>
               <div class="stock">Stok ${item.stok}</div>
-              <button onclick="pilihProduk('${item.nama}')">Pesan</button>
+              <div class="product-buttons">
+                <button class="btn-order" onclick="pilihProduk('${item.nama}')">Pesan</button>
+                <button class="btn-profile" onclick="bukaProfilPetani('${item.idPetani}')">Petani</button>
+              </div>
             </div>
           </div>
         `;
       });
     }
 
+    function bukaProfilPetani(idPetani) {
+      const petani = PETANI_DATA.find(function(p) {
+        return p.id === idPetani;
+      });
+
+      const produkPetani = PRODUK_DATA.filter(function(item) {
+        return item.idPetani === idPetani;
+      });
+
+      if (!petani) return;
+
+      let produkHTML = "";
+
+      produkPetani.forEach(function(item) {
+        produkHTML += `
+          <div class="profile-product">
+            <strong>${item.icon} ${item.nama}</strong><br>
+            Harga: ${item.harga}<br>
+            Stok: ${item.stok}<br>
+            Panen: ${item.panen}<br>
+            <button class="submit-btn" onclick="pilihProdukDariProfil('${item.nama}')">Pesan Produk Ini</button>
+          </div>
+        `;
+      });
+
+      document.getElementById("profileContent").innerHTML = `
+        <div class="profile-head">
+          <div class="profile-avatar">${petani.avatar}</div>
+          <div>
+            <h2>${petani.nama}</h2>
+            <p>✅ ${petani.status}<br>📍 ${petani.lokasi}<br>${petani.catatan}</p>
+          </div>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-box"><strong>${produkPetani.length}</strong>Produk</div>
+          <div class="stat-box"><strong>✅</strong>Valid</div>
+          <div class="stat-box"><strong>📍</strong>Lokal</div>
+        </div>
+
+        <div class="form-note">
+          Layanan: ${petani.layanan}. Semua produk dari petani ini sudah melewati pengecekan admin sebelum ditampilkan.
+        </div>
+
+        <h2>Produk dari ${petani.nama}</h2>
+        ${produkHTML}
+
+        <button class="wa-btn" onclick="chatPetaniAdmin('${petani.nama}')">Tanya Admin tentang ${petani.nama}</button>
+      `;
+
+      document.getElementById("profileModal").style.display = "flex";
+    }
+
+    function tutupProfilPetani() {
+      document.getElementById("profileModal").style.display = "none";
+    }
+
+    function pilihProdukDariProfil(namaProduk) {
+      tutupProfilPetani();
+      pilihProduk(namaProduk);
+    }
+
+    function chatPetaniAdmin(namaPetani) {
+      const pesan = "Halo Admin Petani Pintar, saya ingin bertanya tentang produk dari " + namaPetani + ".";
+      window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + encodeURIComponent(pesan), "_blank");
+    }
+
     function cariProduk() {
-      const keyword = document.getElementById("searchInput").value.toLowerCase();
+      const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
 
       let hasil = PRODUK_DATA.filter(function(item) {
         const cocokNama = item.nama.toLowerCase().includes(keyword);
@@ -719,30 +1183,68 @@
         return cocokSearch && cocokKategoriAktif;
       });
 
-      renderProduk(hasil);
+      renderProduk(hasil, "Hasil pencarian: " + hasil.length + " produk ditemukan.");
     }
 
-    function filterKategori(kategori, element) {
-      kategoriAktif = kategori;
-
+    function setKategoriAktif(element) {
       document.querySelectorAll(".category").forEach(function(cat) {
         cat.classList.remove("active");
       });
 
-      if (element) {
-        element.classList.add("active");
-      }
+      if (element) element.classList.add("active");
+    }
 
+    function filterKategori(kategori, element) {
+      kategoriAktif = kategori;
+      setKategoriAktif(element);
       document.getElementById("searchInput").value = "";
 
       if (kategori === "semua") {
-        renderProduk(PRODUK_DATA);
+        renderProduk(PRODUK_DATA, "Menampilkan semua produk petani.");
       } else {
         const hasil = PRODUK_DATA.filter(function(item) {
           return item.kategori === kategori;
         });
-        renderProduk(hasil);
+        renderProduk(hasil, "Kategori " + kategori + ": " + hasil.length + " produk ditemukan.");
       }
+
+      document.getElementById("produkList").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function filterLayanan(layanan, element) {
+      kategoriAktif = "semua";
+      setKategoriAktif(element);
+      document.getElementById("searchInput").value = "";
+
+      let hasil = [];
+
+      if (layanan === "live") {
+        hasil = PRODUK_DATA.filter(function(item) {
+          return item.live === true;
+        });
+        renderProduk(hasil, "Produk yang bisa lihat panen live: " + hasil.length + " produk.");
+      }
+
+      if (layanan === "petik") {
+        hasil = PRODUK_DATA.filter(function(item) {
+          return item.petik === true;
+        });
+        renderProduk(hasil, "Produk yang bisa petik langsung: " + hasil.length + " produk.");
+      }
+
+      document.getElementById("produkList").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function filterWisataPanen() {
+      kategoriAktif = "semua";
+      document.getElementById("searchInput").value = "";
+
+      const hasil = PRODUK_DATA.filter(function(item) {
+        return item.petik === true;
+      });
+
+      renderProduk(hasil, "Wisata Panen: produk yang bisa dipetik langsung di kebun.");
+      document.getElementById("produkList").scrollIntoView({ behavior: "smooth" });
     }
 
     function lihatSemuaProduk() {
@@ -755,7 +1257,12 @@
 
       document.querySelector(".category").classList.add("active");
 
-      renderProduk(PRODUK_DATA);
+      renderProduk(PRODUK_DATA, "Menampilkan semua produk petani.");
+      document.getElementById("produkList").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function scrollKePetani() {
+      document.getElementById("sellerList").scrollIntoView({ behavior: "smooth" });
     }
 
     function showMode(mode) {
@@ -779,10 +1286,57 @@
 
     function pilihProduk(namaProduk) {
       showMode("pembeli");
+
+      const produk = PRODUK_DATA.find(function(item) {
+        return item.nama === namaProduk;
+      });
+
+      if (produk) {
+        keranjang = [produk];
+        updateKeranjang();
+      }
+
       document.getElementById("produkOrder").value = namaProduk;
       document.getElementById("order").scrollIntoView({
         behavior: "smooth"
       });
+    }
+
+    function updateKeranjang() {
+      document.getElementById("cartCount").innerText = keranjang.length;
+    }
+
+    function bukaKeranjang() {
+      const modal = document.getElementById("cartModal");
+      const items = document.getElementById("cartItems");
+
+      if (keranjang.length === 0) {
+        items.innerHTML = '<div class="cart-item">Keranjang masih kosong. Silakan pilih produk dulu.</div>';
+      } else {
+        items.innerHTML = "";
+        keranjang.forEach(function(item) {
+          items.innerHTML += `
+            <div class="cart-item">
+              <strong>${item.nama}</strong><br>
+              ${item.petani} • ${item.lokasi}<br>
+              Harga: ${item.harga}<br>
+              Stok: ${item.stok}
+            </div>
+          `;
+        });
+      }
+
+      modal.style.display = "flex";
+    }
+
+    function tutupKeranjang() {
+      document.getElementById("cartModal").style.display = "none";
+    }
+
+    function lanjutOrder() {
+      tutupKeranjang();
+      showMode("pembeli");
+      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
     }
 
     function ambilLokasiOrder() {
@@ -867,6 +1421,8 @@
         window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
 
         document.getElementById("orderForm").reset();
+        keranjang = [];
+        updateKeranjang();
 
       } catch (error) {
         alert("Gagal mengirim pesanan. Coba cek koneksi.");
@@ -929,7 +1485,8 @@
     }
 
     function bukaBantuan() {
-      const pesan = "Halo Admin Petani Pintar, saya ingin bertanya tentang layanan Petani Pintar.";
+      const pesan =
+        "Halo Admin Petani Pintar, saya ingin bertanya tentang layanan Petani Pintar.";
       window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
     }
 
@@ -940,7 +1497,9 @@
       });
     }
 
-    renderProduk(PRODUK_DATA);
+    renderPetani();
+    renderProduk(PRODUK_DATA, "Menampilkan semua produk petani.");
+    updateKeranjang();
   </script>
 
 </body>
