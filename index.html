@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Petani Pintar</title>
-  <link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/icon.svg">
-<meta name="theme-color" content="#16883a">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Petani Pintar">
+
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/icon.svg" />
+
+  <meta name="theme-color" content="#16883a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Petani Pintar" />
 
   <style>
     * {
@@ -28,9 +30,9 @@
     .app-header {
       background: linear-gradient(135deg, #16883a, #0f6d2e);
       color: white;
-      padding: 20px 16px 28px;
-      border-bottom-left-radius: 28px;
-      border-bottom-right-radius: 28px;
+      padding: 22px 16px 28px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
       position: sticky;
       top: 0;
       z-index: 10;
@@ -41,44 +43,46 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
       margin-bottom: 16px;
     }
 
     .brand h1 {
       margin: 0;
-      font-size: 29px;
+      font-size: 32px;
       font-weight: 800;
     }
 
     .brand p {
       margin: 6px 0 0;
-      font-size: 14px;
+      font-size: 15px;
       opacity: 0.95;
     }
 
     .cart-btn {
       background: rgba(255,255,255,0.18);
-      width: 52px;
-      height: 52px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 25px;
+      font-size: 27px;
       cursor: pointer;
       position: relative;
       border: none;
       color: white;
+      flex-shrink: 0;
     }
 
     .cart-count {
       position: absolute;
-      top: -3px;
-      right: -3px;
+      top: -4px;
+      right: -4px;
       background: #ff9f1c;
       color: white;
-      font-size: 11px;
-      padding: 3px 7px;
+      font-size: 12px;
+      padding: 4px 8px;
       border-radius: 999px;
       font-weight: bold;
     }
@@ -86,21 +90,22 @@
     .search-input {
       width: 100%;
       border: none;
-      border-radius: 17px;
-      padding: 15px 16px;
+      border-radius: 18px;
+      padding: 16px;
       font-size: 16px;
       outline: none;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
     .search-help {
-      margin-top: 10px;
+      margin-top: 11px;
       font-size: 12px;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.92);
+      line-height: 1.4;
     }
 
     .container {
-      max-width: 1050px;
+      max-width: 1100px;
       margin: auto;
       padding: 16px;
     }
@@ -144,14 +149,14 @@
     }
 
     .promo-icon {
-      width: 58px;
-      height: 58px;
+      width: 60px;
+      height: 60px;
       border-radius: 18px;
       background: #e8f8ee;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 31px;
+      font-size: 32px;
       flex-shrink: 0;
     }
 
@@ -173,6 +178,7 @@
       justify-content: space-between;
       align-items: center;
       margin: 25px 0 13px;
+      gap: 12px;
     }
 
     .section-title h2 {
@@ -313,6 +319,7 @@
       font-weight: bold;
       font-size: 13px;
       margin-bottom: 13px;
+      line-height: 1.4;
     }
 
     .product-grid {
@@ -329,12 +336,19 @@
     }
 
     .product-img {
-      height: 112px;
+      height: 116px;
       background: linear-gradient(135deg, #dff5e6, #b8e7c7);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 48px;
+      overflow: hidden;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .product-info {
@@ -382,6 +396,7 @@
       font-size: 12px;
       color: #777;
       margin-bottom: 10px;
+      line-height: 1.4;
     }
 
     .tag-row {
@@ -398,6 +413,11 @@
       font-size: 10px;
       color: #555;
       font-weight: bold;
+    }
+
+    .tag.red {
+      background: #ffe5e5;
+      color: #d62828;
     }
 
     .product-buttons {
@@ -433,6 +453,7 @@
       text-align: center;
       color: #777;
       grid-column: 1 / -1;
+      line-height: 1.5;
     }
 
     .form-card {
@@ -443,9 +464,25 @@
       margin-bottom: 18px;
     }
 
+    .form-card h3 {
+      margin: 4px 0 12px;
+      color: #176d32;
+    }
+
     .form-note {
       background: #eef8f1;
       border-left: 4px solid #16883a;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.45;
+      margin-bottom: 14px;
+    }
+
+    .form-warning {
+      background: #fff4dc;
+      border-left: 4px solid #ff9f1c;
       padding: 12px;
       border-radius: 10px;
       font-size: 13px;
@@ -468,7 +505,8 @@
     }
 
     textarea {
-      min-height: 80px;
+      min-height: 82px;
+      resize: vertical;
     }
 
     input:focus,
@@ -478,9 +516,17 @@
       background: white;
     }
 
+    input[readonly] {
+      background: #f0f0f0;
+      color: #555;
+    }
+
     .submit-btn,
     .geo-btn,
-    .wa-btn {
+    .wa-btn,
+    .secondary-btn,
+    .danger-btn,
+    .close-btn {
       width: 100%;
       border: none;
       padding: 14px;
@@ -499,6 +545,11 @@
       background: #16883a;
     }
 
+    .submit-btn:disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+
     .geo-btn {
       background: #2f80ed;
     }
@@ -507,16 +558,16 @@
       background: #25d366;
     }
 
+    .secondary-btn {
+      background: #176d32;
+    }
+
     .danger-btn {
-      width: 100%;
-      border: none;
-      padding: 12px;
-      border-radius: 12px;
       background: #d62828;
-      color: white;
-      font-weight: bold;
-      margin-top: 8px;
-      cursor: pointer;
+    }
+
+    .close-btn {
+      background: #222;
     }
 
     .small-danger-btn {
@@ -532,6 +583,19 @@
 
     .hidden {
       display: none;
+    }
+
+    .summary-box {
+      background: #f4f8f2;
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .summary-box strong {
+      color: #176d32;
     }
 
     .modal-bg {
@@ -620,6 +684,7 @@
       padding: 12px;
       margin-bottom: 10px;
       font-size: 14px;
+      line-height: 1.55;
     }
 
     .profile-product strong,
@@ -636,18 +701,6 @@
 
     .cart-info {
       flex: 1;
-    }
-
-    .close-btn {
-      width: 100%;
-      border: none;
-      padding: 12px;
-      border-radius: 12px;
-      background: #222;
-      color: white;
-      font-weight: bold;
-      margin-top: 10px;
-      cursor: pointer;
     }
 
     .bottom-nav {
@@ -718,8 +771,11 @@
       class="search-input"
       placeholder="🔍 Cari produk, petani, lokasi..."
       onkeyup="cariProduk()"
-    >
-    <div class="search-help">Produk diambil otomatis dari Google Sheet.</div>
+    />
+
+    <div class="search-help">
+      Produk otomatis dari Google Sheet. Harga, stok, dan satuan mengikuti data terbaru.
+    </div>
   </header>
 
   <main class="container">
@@ -735,7 +791,7 @@
         <div class="promo-icon">🌾</div>
         <div>
           <h2>Beli langsung dari petani</h2>
-          <p>Produk hanya tampil jika sudah diverifikasi admin. Stok dan harga mengikuti data Google Sheet.</p>
+          <p>Produk hanya tampil jika sudah diverifikasi admin. Jumlah pesanan otomatis mengikuti satuan produk, misalnya kg, ikat, pcs, karung.</p>
         </div>
       </div>
 
@@ -753,21 +809,21 @@
 
       <div class="category-grid">
         <div class="category active" onclick="filterKategori('semua', this)"><span class="emoji">🏠</span>Semua</div>
-        <div class="category" onclick="filterKategori('cabai', this)"><span class="emoji">🌶️</span>Cabai</div>
-        <div class="category" onclick="filterKategori('buah', this)"><span class="emoji">🥑</span>Buah</div>
         <div class="category" onclick="filterKategori('sayur', this)"><span class="emoji">🥬</span>Sayur</div>
+        <div class="category" onclick="filterKategori('buah', this)"><span class="emoji">🍊</span>Buah</div>
+        <div class="category" onclick="filterKategori('cabai', this)"><span class="emoji">🌶️</span>Cabai</div>
         <div class="category" onclick="filterKategori('beras', this)"><span class="emoji">🍚</span>Beras</div>
-        <div class="category" onclick="filterKategori('jagung', this)"><span class="emoji">🌽</span>Jagung</div>
-        <div class="category" onclick="filterLayanan('petik', this)"><span class="emoji">🧺</span>Petik</div>
-        <div class="category" onclick="filterLayanan('live', this)"><span class="emoji">📹</span>Live</div>
+        <div class="category" onclick="filterKategori('umbi', this)"><span class="emoji">🥔</span>Umbi</div>
+        <div class="category" onclick="filterStatusPanen('Ready', this)"><span class="emoji">✅</span>Ready</div>
+        <div class="category" onclick="filterStatusPanen('Pre Order', this)"><span class="emoji">⏳</span>Pre Order</div>
       </div>
 
-      <div class="service-card" onclick="filterWisataPanen()">
+      <div class="service-card" onclick="refreshProduk()">
         <div>
-          <h3>Wisata Panen / Petik Langsung</h3>
-          <p>Klik untuk melihat produk yang bisa dipetik langsung di kebun.</p>
+          <h3>Refresh Stok & Harga</h3>
+          <p>Klik untuk mengambil data terbaru dari Google Sheet.</p>
         </div>
-        <div class="service-badge">Lihat</div>
+        <div class="service-badge">Refresh</div>
       </div>
 
       <div class="section-title" id="produk">
@@ -785,14 +841,31 @@
 
       <div class="form-card">
         <div class="form-note">
-          Order akan masuk ke Google Sheet dan admin akan konfirmasi lewat WhatsApp. Stok final tetap dikonfirmasi admin.
+          Pembeli tidak perlu menulis satuan manual. Pilih produk dulu, lalu satuan, harga, dan total akan otomatis dihitung.
         </div>
 
         <form id="orderForm">
-          <input type="text" id="nama" placeholder="Nama pembeli" required>
-          <input type="text" id="whatsapp" placeholder="Nomor WhatsApp pembeli, contoh 628xxxx" required>
-          <input type="text" id="produkOrder" placeholder="Produk yang dipesan" required>
-          <input type="text" inputmode="numeric" id="jumlah" placeholder="Jumlah / kg / ikat" oninput="formatInputAngka(this)" required>
+          <input type="text" id="nama" placeholder="Nama pembeli" required />
+          <input type="text" id="whatsapp" placeholder="Nomor WhatsApp pembeli, contoh 628xxxx" required />
+
+          <input type="hidden" id="idProdukOrder" />
+          <input type="hidden" id="hargaOrder" />
+          <input type="hidden" id="satuanOrder" />
+
+          <input type="text" id="produkOrder" placeholder="Pilih produk dari daftar di atas" readonly required />
+
+          <input
+            type="number"
+            id="jumlah"
+            placeholder="Jumlah"
+            min="1"
+            oninput="hitungTotalOrder()"
+            required
+          />
+
+          <input type="text" id="satuanTampil" placeholder="Satuan otomatis, contoh kg / ikat" readonly />
+          <input type="text" id="hargaTampil" placeholder="Harga otomatis" readonly />
+          <input type="text" id="totalTampil" placeholder="Total otomatis" readonly />
 
           <select id="metode" required>
             <option value="">Pilih metode</option>
@@ -806,9 +879,9 @@
 
           <button type="button" class="geo-btn" onclick="ambilLokasiOrder()">📍 Ambil Lokasi Saya</button>
 
-          <input type="text" id="latitudeOrder" placeholder="Latitude otomatis" readonly>
-          <input type="text" id="longitudeOrder" placeholder="Longitude otomatis" readonly>
-          <input type="text" id="mapsOrder" placeholder="Link Google Maps otomatis" readonly>
+          <input type="text" id="latitudeOrder" placeholder="Latitude otomatis" readonly />
+          <input type="text" id="longitudeOrder" placeholder="Longitude otomatis" readonly />
+          <input type="text" id="mapsOrder" placeholder="Link Google Maps otomatis" readonly />
 
           <textarea id="catatan" placeholder="Catatan tambahan"></textarea>
 
@@ -823,43 +896,149 @@
       <div class="promo-card">
         <div class="promo-icon">👨‍🌾</div>
         <div>
-          <h2>Gabung sebagai petani</h2>
-          <p>Daftarkan data kebun dan produk. Admin akan verifikasi sebelum produk tampil di website.</p>
+          <h2>Panel Petani</h2>
+          <p>Petani bisa daftar, tambah produk baru, dan update stok/harga. Semua aktivitas tercatat di Log_Perubahan.</p>
         </div>
       </div>
 
       <div class="section-title" id="petani">
-        <h2>Form Daftar Petani</h2>
+        <h2>Daftar Petani</h2>
         <button onclick="scrollToTop()">Atas</button>
       </div>
 
       <div class="form-card">
         <div class="form-note">
-          Data NIK/KTP hanya untuk admin dan tidak ditampilkan ke pembeli. Setelah daftar, kirim foto KTP, foto kebun, dan foto produk ke WhatsApp admin.
+          Data petani baru akan masuk ke sheet Petani dengan status <b>Menunggu Verifikasi</b>. Admin akan cek sebelum aktif.
         </div>
 
         <form id="petaniForm">
-          <input type="text" id="namaPetani" placeholder="Nama petani" required>
-          <input type="text" id="waPetani" placeholder="Nomor WhatsApp petani, contoh 628xxxx" required>
-          <input type="text" id="nikPetani" placeholder="NIK / Nomor KTP untuk verifikasi admin" required>
+          <input type="text" id="namaPetani" placeholder="Nama petani" required />
+          <input type="text" id="waPetani" placeholder="Nomor WhatsApp petani, contoh 628xxxx" required />
+          <input type="text" id="nikPetani" placeholder="NIK / Nomor KTP untuk verifikasi admin" required />
           <textarea id="alamatKebun" placeholder="Alamat kebun" required></textarea>
 
           <button type="button" class="geo-btn" onclick="ambilLokasiPetani()">📍 Ambil Lokasi Kebun</button>
 
-          <input type="text" id="latitudePetani" placeholder="Latitude otomatis" readonly>
-          <input type="text" id="longitudePetani" placeholder="Longitude otomatis" readonly>
-          <input type="text" id="mapsPetani" placeholder="Link Google Maps otomatis" readonly>
+          <input type="text" id="latitudePetani" placeholder="Latitude otomatis" readonly />
+          <input type="text" id="longitudePetani" placeholder="Longitude otomatis" readonly />
+          <input type="text" id="mapsPetani" placeholder="Link Google Maps otomatis" readonly />
 
-          <input type="text" id="produkPetani" placeholder="Jenis produk, contoh: Cabai, Alpukat, Beras" required>
-          <input type="text" id="stokPetani" placeholder="Stok, contoh: 50 kg" oninput="formatInputAngka(this)" required>
-          <input type="text" id="hargaPetani" placeholder="Harga, contoh: Rp28.000/kg" oninput="formatInputRupiah(this)" required>
-          <input type="text" id="jadwalPanen" placeholder="Jadwal panen, contoh: Besok pagi">
-          <input type="text" id="fotoProduk" placeholder="Link foto produk, boleh dikosongkan">
-
-          <button class="submit-btn" type="submit">Daftar Sebagai Petani</button>
+          <button id="btnDaftarPetani" class="submit-btn" type="submit">Daftar Sebagai Petani</button>
         </form>
 
         <a class="wa-btn" href="#" onclick="bukaVerifikasiWA()">Kirim KTP & Foto Kebun via WhatsApp</a>
+      </div>
+
+      <div class="section-title">
+        <h2>Tambah Produk Baru</h2>
+      </div>
+
+      <div class="form-card">
+        <div class="form-warning">
+          Produk baru tidak langsung tampil. Produk akan masuk sheet Produk dengan status <b>Menunggu Verifikasi</b>. Admin harus ubah menjadi <b>Terverifikasi</b>.
+        </div>
+
+        <form id="produkForm">
+          <input type="text" id="produkIdPetani" placeholder="ID Petani, contoh PTN-001" required />
+          <input type="text" id="produkNamaPetani" placeholder="Nama petani" required />
+          <input type="text" id="produkWaPetani" placeholder="WhatsApp petani, contoh 628xxxx" required />
+
+          <input type="text" id="namaProdukBaru" placeholder="Nama produk, contoh Terong / Jeruk / Kangkung" required />
+
+          <select id="kategoriProduk" required>
+            <option value="">Pilih kategori</option>
+            <option value="sayur">Sayur</option>
+            <option value="buah">Buah</option>
+            <option value="cabai">Cabai</option>
+            <option value="beras">Beras</option>
+            <option value="umbi">Umbi</option>
+            <option value="lainnya">Lainnya</option>
+          </select>
+
+          <input type="text" id="iconProduk" placeholder="Icon emoji, contoh 🍆 / 🍊 / 🥬" />
+          <input type="number" id="hargaProduk" placeholder="Harga angka saja, contoh 12000" min="1" required />
+          <input type="number" id="stokProduk" placeholder="Stok angka saja, contoh 3" min="1" required />
+
+          <select id="satuanProduk" required>
+            <option value="">Pilih satuan</option>
+            <option value="kg">kg</option>
+            <option value="ikat">ikat</option>
+            <option value="pcs">pcs</option>
+            <option value="karung">karung</option>
+            <option value="bungkus">bungkus</option>
+            <option value="liter">liter</option>
+            <option value="buah">buah</option>
+          </select>
+
+          <input type="text" id="jadwalProduk" placeholder="Jadwal panen, contoh Setiap hari / Besok pagi" required />
+
+          <select id="statusPanenProduk" required>
+            <option value="Ready">Ready</option>
+            <option value="Panen Hari Ini">Panen Hari Ini</option>
+            <option value="Panen Besok">Panen Besok</option>
+            <option value="Panen Minggu Ini">Panen Minggu Ini</option>
+            <option value="Pre Order">Pre Order</option>
+            <option value="Stok Habis">Stok Habis</option>
+          </select>
+
+          <input type="text" id="fotoProdukBaru" placeholder="Link foto produk, boleh dikosongkan" />
+          <textarea id="alamatKebunProduk" placeholder="Alamat kebun produk"></textarea>
+
+          <button type="button" class="geo-btn" onclick="ambilLokasiProdukBaru()">📍 Ambil Lokasi Produk/Kebun</button>
+
+          <input type="text" id="latitudeProduk" placeholder="Latitude otomatis" readonly />
+          <input type="text" id="longitudeProduk" placeholder="Longitude otomatis" readonly />
+          <input type="text" id="mapsProduk" placeholder="Link Google Maps otomatis" readonly />
+
+          <button id="btnTambahProduk" class="submit-btn" type="submit">Tambah Produk Baru</button>
+        </form>
+      </div>
+
+      <div class="section-title">
+        <h2>Update Stok / Harga</h2>
+      </div>
+
+      <div class="form-card">
+        <div class="form-note">
+          Gunakan ini jika stok berubah, harga berubah, atau jadwal panen berubah. Contoh pagi stok 30 kg, sore sisa 10 kg.
+        </div>
+
+        <form id="updateProdukForm">
+          <input type="text" id="updateIdProduk" placeholder="ID Produk, contoh PRD-001" required />
+          <input type="text" id="updateIdPetani" placeholder="ID Petani, contoh PTN-001" required />
+          <input type="text" id="updateWaPetani" placeholder="WhatsApp petani, contoh 628xxxx" required />
+
+          <input type="number" id="updateHarga" placeholder="Harga baru angka saja, contoh 12000" min="1" />
+          <input type="number" id="updateStok" placeholder="Stok baru angka saja, contoh 10" min="0" />
+
+          <select id="updateSatuan">
+            <option value="">Satuan tetap / pilih jika berubah</option>
+            <option value="kg">kg</option>
+            <option value="ikat">ikat</option>
+            <option value="pcs">pcs</option>
+            <option value="karung">karung</option>
+            <option value="bungkus">bungkus</option>
+            <option value="liter">liter</option>
+            <option value="buah">buah</option>
+          </select>
+
+          <input type="text" id="updateJadwalPanen" placeholder="Jadwal panen baru, contoh Setiap hari" />
+
+          <select id="updateStatusPanen">
+            <option value="">Status panen tetap / pilih jika berubah</option>
+            <option value="Ready">Ready</option>
+            <option value="Panen Hari Ini">Panen Hari Ini</option>
+            <option value="Panen Besok">Panen Besok</option>
+            <option value="Panen Minggu Ini">Panen Minggu Ini</option>
+            <option value="Pre Order">Pre Order</option>
+            <option value="Stok Habis">Stok Habis</option>
+          </select>
+
+          <input type="text" id="updateFotoProduk" placeholder="Link foto baru, boleh dikosongkan" />
+          <textarea id="updateCatatan" placeholder="Catatan perubahan, contoh stok sore tinggal 10 kg"></textarea>
+
+          <button id="btnUpdateProduk" class="submit-btn" type="submit">Update Produk</button>
+        </form>
       </div>
 
     </section>
@@ -898,121 +1077,152 @@
     let PETANI_DATA = [];
     let kategoriAktif = "semua";
     let keranjang = [];
+    let produkDipilih = null;
 
-    function ambilAngka(value) {
+    function angkaSaja(value) {
       return String(value || "").replace(/[^\d]/g, "");
     }
 
-    function formatAngkaIndonesia(value) {
-      const angka = ambilAngka(value);
-      if (!angka) return "";
-      return Number(angka).toLocaleString("id-ID");
+    function nomorWA(value) {
+      let hasil = angkaSaja(value);
+      if (hasil.startsWith("08")) {
+        hasil = "62" + hasil.substring(1);
+      }
+      return hasil;
     }
 
-    function formatHarga(value) {
-      const teks = String(value || "").trim();
-      const angka = ambilAngka(teks);
-
-      if (!angka) return teks || "Harga belum diisi";
-
-      let satuan = "";
-
-      if (teks.toLowerCase().includes("/kg")) satuan = "/kg";
-      else if (teks.toLowerCase().includes("/ikat")) satuan = "/ikat";
-      else if (teks.toLowerCase().includes("/pcs")) satuan = "/pcs";
-      else if (teks.toLowerCase().includes("/buah")) satuan = "/buah";
-      else if (teks.toLowerCase().includes("/sisir")) satuan = "/sisir";
-
-      return "Rp" + Number(angka).toLocaleString("id-ID") + satuan;
+    function formatRupiah(angka) {
+      angka = Number(angka || 0);
+      return "Rp" + angka.toLocaleString("id-ID");
     }
 
-    function formatStok(value) {
-      const teks = String(value || "").trim();
-      const angka = ambilAngka(teks);
-
-      if (!angka) return teks || "Stok belum diisi";
-
-      let satuan = "";
-
-      if (teks.toLowerCase().includes("kg")) satuan = " kg";
-      else if (teks.toLowerCase().includes("ikat")) satuan = " ikat";
-      else if (teks.toLowerCase().includes("pcs")) satuan = " pcs";
-      else if (teks.toLowerCase().includes("buah")) satuan = " buah";
-      else if (teks.toLowerCase().includes("sisir")) satuan = " sisir";
-
-      return Number(angka).toLocaleString("id-ID") + satuan;
+    function aman(value) {
+      if (value === undefined || value === null || value === "") return "-";
+      return value;
     }
 
-    function formatInputAngka(input) {
-      const angka = ambilAngka(input.value);
-      input.value = angka ? Number(angka).toLocaleString("id-ID") : "";
+    function getNamaProduk(item) {
+      return item.produk || item.nama || "";
     }
 
-    function formatInputRupiah(input) {
-      const angka = ambilAngka(input.value);
-      input.value = angka ? "Rp" + Number(angka).toLocaleString("id-ID") : "";
+    function getIdPetani(item) {
+      return item.id_petani || item.idPetani || "";
+    }
+
+    function getNamaPetani(item) {
+      return item.petani || item.nama_petani || "";
+    }
+
+    function getLokasi(item) {
+      return item.alamat_kebun || item.lokasi || "-";
+    }
+
+    function getHarga(item) {
+      return Number(item.harga || 0);
+    }
+
+    function getStok(item) {
+      return Number(item.stok || 0);
+    }
+
+    function getSatuan(item) {
+      return item.satuan || "";
+    }
+
+    function getPanen(item) {
+      return item.jadwal_panen || item.panen || "-";
+    }
+
+    function getIcon(item) {
+      return item.icon || "🌾";
+    }
+
+    function getFoto(item) {
+      return item.foto_produk || item.gambar || "";
+    }
+
+    function statusProduk(item) {
+      const stok = getStok(item);
+      const status = String(item.status_panen || "").toLowerCase();
+      if (stok <= 0 || status === "stok habis") return "Stok Habis";
+      return item.status_panen || "Ready";
+    }
+
+    async function kirimKeScript(data, tombol, teksLoading, teksNormal) {
+      tombol.disabled = true;
+      tombol.innerText = teksLoading;
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(data)
+        });
+
+        tombol.disabled = false;
+        tombol.innerText = teksNormal;
+
+        return true;
+      } catch (error) {
+        console.log(error);
+        tombol.disabled = false;
+        tombol.innerText = teksNormal;
+        alert("Gagal mengirim data. Cek koneksi internet.");
+        return false;
+      }
     }
 
     async function ambilProdukDariSheet() {
+      const info = document.getElementById("resultInfo");
+      info.innerText = "Memuat produk dari Google Sheet...";
+
       try {
-        const response = await fetch(SCRIPT_URL);
+        const response = await fetch(SCRIPT_URL + "?t=" + Date.now());
         const data = await response.json();
 
         if (data.status === "error") {
+          PRODUK_DATA = [];
           renderProduk([], "Gagal mengambil produk: " + data.message);
           return;
         }
 
-        PRODUK_DATA = data;
+        PRODUK_DATA = Array.isArray(data.produk) ? data.produk : [];
         buatDataPetaniDariProduk();
-
         renderPetani();
-        renderProduk(PRODUK_DATA, "Menampilkan produk terverifikasi dari Google Sheet.");
+        renderProduk(PRODUK_DATA, "Menampilkan " + PRODUK_DATA.length + " produk terverifikasi dari Google Sheet.");
       } catch (error) {
         console.log(error);
+        PRODUK_DATA = [];
         renderProduk([], "Gagal mengambil data produk. Coba refresh halaman.");
       }
+    }
+
+    function refreshProduk() {
+      ambilProdukDariSheet();
     }
 
     function buatDataPetaniDariProduk() {
       const mapPetani = {};
 
       PRODUK_DATA.forEach(function(item) {
-        if (!mapPetani[item.idPetani]) {
-          mapPetani[item.idPetani] = {
-            id: item.idPetani,
-            nama: item.petani,
-            lokasi: item.lokasi,
+        const idPetani = getIdPetani(item);
+        const namaPetani = getNamaPetani(item);
+
+        if (!idPetani) return;
+
+        if (!mapPetani[idPetani]) {
+          mapPetani[idPetani] = {
+            id: idPetani,
+            nama: namaPetani,
+            lokasi: getLokasi(item),
             status: "Terverifikasi",
             avatar: "👨‍🌾",
-            layanan: buatLayananPetani(item.idPetani),
             catatan: "Petani terverifikasi dengan produk aktif di Petani Pintar."
           };
         }
       });
 
       PETANI_DATA = Object.values(mapPetani);
-    }
-
-    function buatLayananPetani(idPetani) {
-      const produkPetani = PRODUK_DATA.filter(function(item) {
-        return item.idPetani === idPetani;
-      });
-
-      const adaLive = produkPetani.some(function(item) {
-        return item.live;
-      });
-
-      const adaPetik = produkPetani.some(function(item) {
-        return item.petik;
-      });
-
-      const layanan = ["Kirim"];
-
-      if (adaPetik) layanan.push("Petik langsung");
-      if (adaLive) layanan.push("Live panen");
-
-      return layanan.join(", ");
     }
 
     function renderPetani() {
@@ -1026,7 +1236,7 @@
 
       PETANI_DATA.forEach(function(petani) {
         const jumlahProduk = PRODUK_DATA.filter(function(item) {
-          return item.idPetani === petani.id;
+          return getIdPetani(item) === petani.id;
         }).length;
 
         sellerList.innerHTML += `
@@ -1049,31 +1259,49 @@
       produkList.innerHTML = "";
       resultInfo.innerText = pesanInfo || "Menampilkan " + listProduk.length + " produk petani.";
 
-      if (listProduk.length === 0) {
-        produkList.innerHTML = '<div class="empty">Produk tidak ditemukan. Pastikan sheet Produk sudah diisi dan Status = Terverifikasi.</div>';
+      if (!listProduk || listProduk.length === 0) {
+        produkList.innerHTML = '<div class="empty">Produk tidak ditemukan. Pastikan sheet Produk sudah diisi dan Status_Verifikasi = Terverifikasi.</div>';
         return;
       }
 
       listProduk.forEach(function(item) {
-        let layanan = "";
-        if (item.live) layanan += '<span class="tag">📹 Live panen</span>';
-        if (item.petik) layanan += '<span class="tag">🧺 Petik langsung</span>';
+        const namaProduk = getNamaProduk(item);
+        const idProduk = item.id_produk || "";
+        const idPetani = getIdPetani(item);
+        const namaPetani = getNamaPetani(item);
+        const lokasi = getLokasi(item);
+        const harga = getHarga(item);
+        const stok = getStok(item);
+        const satuan = getSatuan(item);
+        const panen = getPanen(item);
+        const icon = getIcon(item);
+        const foto = getFoto(item);
+        const status = statusProduk(item);
+
+        const gambarHTML = foto
+          ? `<img src="${foto}" alt="${namaProduk}" onerror="this.style.display='none'; this.parentElement.innerHTML='${icon}'">`
+          : icon;
+
+        const statusTag = status === "Stok Habis"
+          ? `<span class="tag red">Stok Habis</span>`
+          : `<span class="tag">${status}</span>`;
 
         produkList.innerHTML += `
           <div class="product-card">
-            <div class="product-img">${item.icon || "🌾"}</div>
+            <div class="product-img">${gambarHTML}</div>
             <div class="product-info">
-              <span class="verified">✅ Petani Terverifikasi</span>
-              <h3>${item.nama}</h3>
+              <span class="verified">✅ Terverifikasi</span>
+              <h3>${namaProduk}</h3>
               <div class="seller">
-                <span class="seller-link" onclick="bukaProfilPetani('${item.idPetani}')">${item.petani}</span> • ${item.lokasi}<br>${item.panen}
+                <span class="seller-link" onclick="bukaProfilPetani('${idPetani}')">${namaPetani}</span> • ${lokasi}<br>
+                Panen: ${panen}
               </div>
-              <div class="tag-row">${layanan}</div>
-              <div class="price">${formatHarga(item.harga)}</div>
-              <div class="stock">Stok ${formatStok(item.stok)}</div>
+              <div class="tag-row">${statusTag}<span class="tag">${satuan}</span></div>
+              <div class="price">${formatRupiah(harga)} / ${satuan}</div>
+              <div class="stock">Stok ${stok} ${satuan}</div>
               <div class="product-buttons">
-                <button class="btn-order" onclick="pilihProduk('${item.nama}')">Pesan</button>
-                <button class="btn-profile" onclick="bukaProfilPetani('${item.idPetani}')">Petani</button>
+                <button class="btn-order" onclick="pilihProduk('${idProduk}')">Pesan</button>
+                <button class="btn-profile" onclick="bukaProfilPetani('${idPetani}')">Petani</button>
               </div>
             </div>
           </div>
@@ -1087,7 +1315,7 @@
       });
 
       const produkPetani = PRODUK_DATA.filter(function(item) {
-        return item.idPetani === idPetani;
+        return getIdPetani(item) === idPetani;
       });
 
       if (!petani) return;
@@ -1097,11 +1325,13 @@
       produkPetani.forEach(function(item) {
         produkHTML += `
           <div class="profile-product">
-            <strong>${item.icon || "🌾"} ${item.nama}</strong><br>
-            Harga: ${formatHarga(item.harga)}<br>
-            Stok: ${formatStok(item.stok)}<br>
-            Panen: ${item.panen}<br><br>
-            <button class="submit-btn" onclick="pilihProdukDariProfil('${item.nama}')">Pesan Produk Ini</button>
+            <strong>${getIcon(item)} ${getNamaProduk(item)}</strong><br>
+            ID Produk: ${item.id_produk || "-"}<br>
+            Harga: ${formatRupiah(getHarga(item))} / ${getSatuan(item)}<br>
+            Stok: ${getStok(item)} ${getSatuan(item)}<br>
+            Panen: ${getPanen(item)}<br>
+            Status: ${statusProduk(item)}<br><br>
+            <button class="submit-btn" onclick="pilihProdukDariProfil('${item.id_produk || ""}')">Pesan Produk Ini</button>
           </div>
         `;
       });
@@ -1121,10 +1351,6 @@
           <div class="stat-box"><strong>📍</strong>Lokal</div>
         </div>
 
-        <div class="form-note">
-          Layanan: ${petani.layanan}. Semua produk dari petani ini tampil setelah status produk Terverifikasi.
-        </div>
-
         <h2>Produk dari ${petani.nama}</h2>
         ${produkHTML}
 
@@ -1138,9 +1364,9 @@
       document.getElementById("profileModal").style.display = "none";
     }
 
-    function pilihProdukDariProfil(namaProduk) {
+    function pilihProdukDariProfil(idProduk) {
       tutupProfilPetani();
-      pilihProduk(namaProduk);
+      pilihProduk(idProduk);
     }
 
     function chatPetaniAdmin(namaPetani) {
@@ -1148,17 +1374,58 @@
       window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + encodeURIComponent(pesan), "_blank");
     }
 
+    function pilihProduk(idProduk) {
+      const produk = PRODUK_DATA.find(function(item) {
+        return String(item.id_produk) === String(idProduk);
+      });
+
+      if (!produk) {
+        alert("Produk tidak ditemukan.");
+        return;
+      }
+
+      produkDipilih = produk;
+      keranjang = [produk];
+      simpanKeranjang();
+      updateKeranjang();
+
+      document.getElementById("idProdukOrder").value = produk.id_produk || "";
+      document.getElementById("produkOrder").value = getNamaProduk(produk);
+      document.getElementById("hargaOrder").value = getHarga(produk);
+      document.getElementById("satuanOrder").value = getSatuan(produk);
+      document.getElementById("satuanTampil").value = getSatuan(produk);
+      document.getElementById("hargaTampil").value = formatRupiah(getHarga(produk)) + " / " + getSatuan(produk);
+      document.getElementById("jumlah").value = "";
+      document.getElementById("totalTampil").value = "";
+
+      showMode("pembeli");
+      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function hitungTotalOrder() {
+      const jumlah = Number(document.getElementById("jumlah").value || 0);
+      const harga = Number(document.getElementById("hargaOrder").value || 0);
+      const satuan = document.getElementById("satuanOrder").value || "";
+      const total = jumlah * harga;
+
+      if (jumlah > 0 && harga > 0) {
+        document.getElementById("totalTampil").value = jumlah + " " + satuan + " x " + formatRupiah(harga) + " = " + formatRupiah(total);
+      } else {
+        document.getElementById("totalTampil").value = "";
+      }
+    }
+
     function cariProduk() {
       const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
 
-      let hasil = PRODUK_DATA.filter(function(item) {
-        const cocokNama = String(item.nama).toLowerCase().includes(keyword);
-        const cocokPetani = String(item.petani).toLowerCase().includes(keyword);
-        const cocokKategori = String(item.kategori).toLowerCase().includes(keyword);
-        const cocokLokasi = String(item.lokasi).toLowerCase().includes(keyword);
+      const hasil = PRODUK_DATA.filter(function(item) {
+        const cocokNama = String(getNamaProduk(item)).toLowerCase().includes(keyword);
+        const cocokPetani = String(getNamaPetani(item)).toLowerCase().includes(keyword);
+        const cocokKategori = String(item.kategori || "").toLowerCase().includes(keyword);
+        const cocokLokasi = String(getLokasi(item)).toLowerCase().includes(keyword);
 
         const cocokSearch = cocokNama || cocokPetani || cocokKategori || cocokLokasi;
-        const cocokKategoriAktif = kategoriAktif === "semua" || item.kategori === kategoriAktif;
+        const cocokKategoriAktif = kategoriAktif === "semua" || String(item.kategori || "").toLowerCase() === kategoriAktif;
 
         return cocokSearch && cocokKategoriAktif;
       });
@@ -1183,7 +1450,7 @@
         renderProduk(PRODUK_DATA, "Menampilkan semua produk petani.");
       } else {
         const hasil = PRODUK_DATA.filter(function(item) {
-          return item.kategori === kategori;
+          return String(item.kategori || "").toLowerCase() === kategori;
         });
         renderProduk(hasil, "Kategori " + kategori + ": " + hasil.length + " produk ditemukan.");
       }
@@ -1191,39 +1458,16 @@
       document.getElementById("produkList").scrollIntoView({ behavior: "smooth" });
     }
 
-    function filterLayanan(layanan, element) {
+    function filterStatusPanen(status, element) {
       kategoriAktif = "semua";
       setKategoriAktif(element);
       document.getElementById("searchInput").value = "";
 
-      let hasil = [];
-
-      if (layanan === "live") {
-        hasil = PRODUK_DATA.filter(function(item) {
-          return item.live === true;
-        });
-        renderProduk(hasil, "Produk yang bisa lihat panen live: " + hasil.length + " produk.");
-      }
-
-      if (layanan === "petik") {
-        hasil = PRODUK_DATA.filter(function(item) {
-          return item.petik === true;
-        });
-        renderProduk(hasil, "Produk yang bisa petik langsung: " + hasil.length + " produk.");
-      }
-
-      document.getElementById("produkList").scrollIntoView({ behavior: "smooth" });
-    }
-
-    function filterWisataPanen() {
-      kategoriAktif = "semua";
-      document.getElementById("searchInput").value = "";
-
       const hasil = PRODUK_DATA.filter(function(item) {
-        return item.petik === true;
+        return String(item.status_panen || "").toLowerCase() === String(status).toLowerCase();
       });
 
-      renderProduk(hasil, "Wisata Panen: produk yang bisa dipetik langsung di kebun.");
+      renderProduk(hasil, "Status " + status + ": " + hasil.length + " produk ditemukan.");
       document.getElementById("produkList").scrollIntoView({ behavior: "smooth" });
     }
 
@@ -1235,7 +1479,8 @@
         cat.classList.remove("active");
       });
 
-      document.querySelector(".category").classList.add("active");
+      const pertama = document.querySelector(".category");
+      if (pertama) pertama.classList.add("active");
 
       renderProduk(PRODUK_DATA, "Menampilkan semua produk petani.");
       document.getElementById("produkList").scrollIntoView({ behavior: "smooth" });
@@ -1264,23 +1509,6 @@
       }
     }
 
-    function pilihProduk(namaProduk) {
-      showMode("pembeli");
-
-      const produk = PRODUK_DATA.find(function(item) {
-        return item.nama === namaProduk;
-      });
-
-      if (produk) {
-        keranjang = [produk];
-        simpanKeranjang();
-        updateKeranjang();
-      }
-
-      document.getElementById("produkOrder").value = namaProduk;
-      document.getElementById("order").scrollIntoView({ behavior: "smooth" });
-    }
-
     function simpanKeranjang() {
       localStorage.setItem("keranjangPetaniPintar", JSON.stringify(keranjang));
     }
@@ -1302,15 +1530,16 @@
         items.innerHTML = '<div class="cart-item">Keranjang masih kosong. Silakan pilih produk dulu.</div>';
       } else {
         items.innerHTML = "";
+
         keranjang.forEach(function(item, index) {
           items.innerHTML += `
             <div class="cart-item">
               <div class="cart-row">
                 <div class="cart-info">
-                  <strong>${item.icon || "🌾"} ${item.nama}</strong><br>
-                  ${item.petani} • ${item.lokasi}<br>
-                  Harga: ${formatHarga(item.harga)}<br>
-                  Stok: ${formatStok(item.stok)}
+                  <strong>${getIcon(item)} ${getNamaProduk(item)}</strong><br>
+                  ${getNamaPetani(item)} • ${getLokasi(item)}<br>
+                  Harga: ${formatRupiah(getHarga(item))} / ${getSatuan(item)}<br>
+                  Stok: ${getStok(item)} ${getSatuan(item)}
                 </div>
                 <button class="small-danger-btn" onclick="hapusItemKeranjang(${index})">Hapus</button>
               </div>
@@ -1329,15 +1558,31 @@
       bukaKeranjang();
 
       if (keranjang.length === 0) {
+        produkDipilih = null;
+        document.getElementById("idProdukOrder").value = "";
         document.getElementById("produkOrder").value = "";
+        document.getElementById("hargaOrder").value = "";
+        document.getElementById("satuanOrder").value = "";
+        document.getElementById("satuanTampil").value = "";
+        document.getElementById("hargaTampil").value = "";
+        document.getElementById("totalTampil").value = "";
       }
     }
 
     function kosongkanKeranjang() {
       keranjang = [];
+      produkDipilih = null;
       simpanKeranjang();
       updateKeranjang();
+
+      document.getElementById("idProdukOrder").value = "";
       document.getElementById("produkOrder").value = "";
+      document.getElementById("hargaOrder").value = "";
+      document.getElementById("satuanOrder").value = "";
+      document.getElementById("satuanTampil").value = "";
+      document.getElementById("hargaTampil").value = "";
+      document.getElementById("totalTampil").value = "";
+
       bukaKeranjang();
     }
 
@@ -1350,7 +1595,7 @@
       showMode("pembeli");
 
       if (keranjang.length > 0) {
-        document.getElementById("produkOrder").value = keranjang[0].nama;
+        pilihProduk(keranjang[0].id_produk);
       }
 
       document.getElementById("order").scrollIntoView({ behavior: "smooth" });
@@ -1398,17 +1643,45 @@
       });
     }
 
+    function ambilLokasiProdukBaru() {
+      if (!navigator.geolocation) {
+        alert("Browser tidak mendukung lokasi.");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const maps = "https://www.google.com/maps?q=" + lat + "," + lng;
+
+        document.getElementById("latitudeProduk").value = lat;
+        document.getElementById("longitudeProduk").value = lng;
+        document.getElementById("mapsProduk").value = maps;
+
+        alert("Lokasi produk/kebun berhasil diambil.");
+      }, function() {
+        alert("Gagal mengambil lokasi. Pastikan izin lokasi aktif.");
+      });
+    }
+
     document.getElementById("orderForm").addEventListener("submit", async function(e) {
       e.preventDefault();
 
       const btn = document.getElementById("btnKirimOrder");
 
+      const jumlah = Number(document.getElementById("jumlah").value || 0);
+      const harga = Number(document.getElementById("hargaOrder").value || 0);
+      const satuan = document.getElementById("satuanOrder").value;
+
       const data = {
         tipe: "order",
         nama: document.getElementById("nama").value.trim(),
-        whatsapp: document.getElementById("whatsapp").value.trim(),
+        whatsapp: nomorWA(document.getElementById("whatsapp").value),
+        id_produk: document.getElementById("idProdukOrder").value,
         produk: document.getElementById("produkOrder").value.trim(),
-        jumlah: document.getElementById("jumlah").value,
+        jumlah: jumlah,
+        satuan: satuan,
+        harga: harga,
         metode: document.getElementById("metode").value,
         alamat: document.getElementById("alamat").value.trim(),
         latitude: document.getElementById("latitudeOrder").value,
@@ -1427,12 +1700,12 @@
         return;
       }
 
-      if (!data.produk) {
-        alert("Produk wajib dipilih.");
+      if (!data.id_produk || !data.produk) {
+        alert("Pilih produk dari daftar terlebih dahulu.");
         return;
       }
 
-      if (Number(ambilAngka(data.jumlah)) <= 0) {
+      if (jumlah <= 0) {
         alert("Jumlah harus lebih dari 0.");
         return;
       }
@@ -1442,24 +1715,21 @@
         return;
       }
 
-      btn.disabled = true;
-      btn.innerText = "Mengirim...";
+      const sukses = await kirimKeScript(data, btn, "Mengirim...", "Kirim Pesanan");
 
-      try {
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          body: JSON.stringify(data)
-        });
-
+      if (sukses) {
         alert("Pesanan berhasil dikirim! Admin akan konfirmasi via WhatsApp.");
+
+        const total = jumlah * harga;
 
         const pesan =
           "Halo Admin Petani Pintar, saya ingin pesan:%0A%0A" +
           "Nama: " + data.nama + "%0A" +
           "WhatsApp: " + data.whatsapp + "%0A" +
           "Produk: " + data.produk + "%0A" +
-          "Jumlah: " + data.jumlah + "%0A" +
+          "Jumlah: " + data.jumlah + " " + data.satuan + "%0A" +
+          "Harga: " + formatRupiah(data.harga) + " / " + data.satuan + "%0A" +
+          "Total: " + formatRupiah(total) + "%0A" +
           "Metode: " + data.metode + "%0A" +
           "Alamat: " + data.alamat + "%0A" +
           "Maps: " + data.link_maps + "%0A" +
@@ -1468,37 +1738,30 @@
         window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
 
         document.getElementById("orderForm").reset();
-        keranjang = [];
-        simpanKeranjang();
-        updateKeranjang();
-
-      } catch (error) {
-        alert("Gagal mengirim pesanan. Coba cek koneksi.");
-        console.log(error);
+        kosongkanKeranjang();
       }
-
-      btn.disabled = false;
-      btn.innerText = "Kirim Pesanan";
     });
 
     document.getElementById("petaniForm").addEventListener("submit", async function(e) {
       e.preventDefault();
 
+      const btn = document.getElementById("btnDaftarPetani");
+
       const data = {
         tipe: "petani",
-        nama_petani: document.getElementById("namaPetani").value,
-        whatsapp: document.getElementById("waPetani").value,
-        nik: document.getElementById("nikPetani").value,
-        alamat_kebun: document.getElementById("alamatKebun").value,
+        nama_petani: document.getElementById("namaPetani").value.trim(),
+        whatsapp: nomorWA(document.getElementById("waPetani").value),
+        nik: document.getElementById("nikPetani").value.trim(),
+        alamat_kebun: document.getElementById("alamatKebun").value.trim(),
         latitude: document.getElementById("latitudePetani").value,
         longitude: document.getElementById("longitudePetani").value,
-        link_maps: document.getElementById("mapsPetani").value,
-        produk: document.getElementById("produkPetani").value,
-        stok: document.getElementById("stokPetani").value,
-        harga: document.getElementById("hargaPetani").value,
-        jadwal_panen: document.getElementById("jadwalPanen").value,
-        foto_produk: document.getElementById("fotoProduk").value
+        link_maps: document.getElementById("mapsPetani").value
       };
+
+      if (data.nama_petani.length < 3) {
+        alert("Nama petani minimal 3 huruf.");
+        return;
+      }
 
       if (!data.whatsapp.startsWith("62")) {
         alert("Nomor WhatsApp harus diawali 62.");
@@ -1510,31 +1773,150 @@
         return;
       }
 
-      try {
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          body: JSON.stringify(data)
-        });
+      if (!data.alamat_kebun) {
+        alert("Alamat kebun wajib diisi.");
+        return;
+      }
 
-        alert("Data petani berhasil dikirim! Silakan lanjut kirim KTP dan foto kebun via WhatsApp admin.");
+      const sukses = await kirimKeScript(data, btn, "Mengirim...", "Daftar Sebagai Petani");
+
+      if (sukses) {
+        alert("Data petani berhasil dikirim dan menunggu verifikasi admin.");
 
         const pesan =
           "Halo Admin Petani Pintar, saya ingin verifikasi sebagai petani.%0A%0A" +
           "Nama Petani: " + data.nama_petani + "%0A" +
           "WhatsApp: " + data.whatsapp + "%0A" +
-          "Produk: " + data.produk + "%0A" +
           "Alamat Kebun: " + data.alamat_kebun + "%0A" +
           "Maps Kebun: " + data.link_maps + "%0A%0A" +
-          "Saya akan kirim foto KTP, foto kebun, dan foto produk untuk verifikasi.";
+          "Saya akan kirim foto KTP dan foto kebun untuk verifikasi.";
 
         window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
 
         document.getElementById("petaniForm").reset();
+      }
+    });
 
-      } catch (error) {
-        alert("Gagal mengirim data petani. Coba cek koneksi.");
-        console.log(error);
+    document.getElementById("produkForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById("btnTambahProduk");
+
+      const data = {
+        tipe: "produk",
+        id_petani: document.getElementById("produkIdPetani").value.trim(),
+        nama_petani: document.getElementById("produkNamaPetani").value.trim(),
+        whatsapp_petani: nomorWA(document.getElementById("produkWaPetani").value),
+        produk: document.getElementById("namaProdukBaru").value.trim(),
+        kategori: document.getElementById("kategoriProduk").value,
+        icon: document.getElementById("iconProduk").value.trim() || "🥬",
+        harga: Number(document.getElementById("hargaProduk").value || 0),
+        stok: Number(document.getElementById("stokProduk").value || 0),
+        satuan: document.getElementById("satuanProduk").value,
+        jadwal_panen: document.getElementById("jadwalProduk").value.trim(),
+        status_panen: document.getElementById("statusPanenProduk").value,
+        foto_produk: document.getElementById("fotoProdukBaru").value.trim(),
+        alamat_kebun: document.getElementById("alamatKebunProduk").value.trim(),
+        latitude: document.getElementById("latitudeProduk").value,
+        longitude: document.getElementById("longitudeProduk").value,
+        link_maps: document.getElementById("mapsProduk").value
+      };
+
+      if (!data.id_petani || !data.nama_petani || !data.whatsapp_petani || !data.produk) {
+        alert("ID Petani, nama petani, WhatsApp, dan nama produk wajib diisi.");
+        return;
+      }
+
+      if (!data.whatsapp_petani.startsWith("62")) {
+        alert("WhatsApp petani harus diawali 62.");
+        return;
+      }
+
+      if (data.harga <= 0 || data.stok <= 0) {
+        alert("Harga dan stok harus lebih dari 0.");
+        return;
+      }
+
+      if (!data.satuan) {
+        alert("Pilih satuan produk.");
+        return;
+      }
+
+      const sukses = await kirimKeScript(data, btn, "Mengirim...", "Tambah Produk Baru");
+
+      if (sukses) {
+        alert("Produk berhasil dikirim dan menunggu verifikasi admin.");
+
+        const pesan =
+          "Halo Admin Petani Pintar, saya menambahkan produk baru.%0A%0A" +
+          "ID Petani: " + data.id_petani + "%0A" +
+          "Nama Petani: " + data.nama_petani + "%0A" +
+          "Produk: " + data.produk + "%0A" +
+          "Harga: " + formatRupiah(data.harga) + " / " + data.satuan + "%0A" +
+          "Stok: " + data.stok + " " + data.satuan + "%0A" +
+          "Jadwal Panen: " + data.jadwal_panen + "%0A" +
+          "Status: Menunggu Verifikasi";
+
+        window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
+
+        document.getElementById("produkForm").reset();
+      }
+    });
+
+    document.getElementById("updateProdukForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById("btnUpdateProduk");
+
+      const data = {
+        tipe: "update_produk",
+        id_produk: document.getElementById("updateIdProduk").value.trim(),
+        id_petani: document.getElementById("updateIdPetani").value.trim(),
+        whatsapp_petani: nomorWA(document.getElementById("updateWaPetani").value),
+        harga: document.getElementById("updateHarga").value,
+        stok: document.getElementById("updateStok").value,
+        satuan: document.getElementById("updateSatuan").value,
+        jadwal_panen: document.getElementById("updateJadwalPanen").value.trim(),
+        status_panen: document.getElementById("updateStatusPanen").value,
+        foto_produk: document.getElementById("updateFotoProduk").value.trim(),
+        catatan: document.getElementById("updateCatatan").value.trim()
+      };
+
+      if (!data.id_produk || !data.id_petani || !data.whatsapp_petani) {
+        alert("ID Produk, ID Petani, dan WhatsApp wajib diisi.");
+        return;
+      }
+
+      if (!data.whatsapp_petani.startsWith("62")) {
+        alert("WhatsApp petani harus diawali 62.");
+        return;
+      }
+
+      if (!data.harga && !data.stok && !data.satuan && !data.jadwal_panen && !data.status_panen && !data.foto_produk) {
+        alert("Isi minimal salah satu perubahan: stok, harga, satuan, jadwal, status, atau foto.");
+        return;
+      }
+
+      const sukses = await kirimKeScript(data, btn, "Mengupdate...", "Update Produk");
+
+      if (sukses) {
+        alert("Produk berhasil diupdate. Perubahan tercatat di Log_Perubahan dan admin menerima email.");
+
+        const pesan =
+          "Halo Admin Petani Pintar, saya update produk.%0A%0A" +
+          "ID Produk: " + data.id_produk + "%0A" +
+          "ID Petani: " + data.id_petani + "%0A" +
+          "Harga Baru: " + (data.harga ? formatRupiah(data.harga) : "-") + "%0A" +
+          "Stok Baru: " + (data.stok || "-") + "%0A" +
+          "Satuan: " + (data.satuan || "-") + "%0A" +
+          "Jadwal: " + (data.jadwal_panen || "-") + "%0A" +
+          "Status Panen: " + (data.status_panen || "-") + "%0A" +
+          "Catatan: " + (data.catatan || "-");
+
+        window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
+
+        document.getElementById("updateProdukForm").reset();
+        setTimeout(ambilProdukDariSheet, 1500);
       }
     });
 
@@ -1551,10 +1933,6 @@
       window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
     }
 
-    function scrollKePetani() {
-      document.getElementById("sellerList").scrollIntoView({ behavior: "smooth" });
-    }
-
     function scrollToTop() {
       window.scrollTo({
         top: 0,
@@ -1565,33 +1943,25 @@
     ambilKeranjang();
     updateKeranjang();
     ambilProdukDariSheet();
+
+    setInterval(function() {
+      ambilProdukDariSheet();
+    }, 60000);
   </script>
 
   <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-      navigator.serviceWorker.register("/sw.js")
-        .then(function() {
-          console.log("Service Worker aktif.");
-        })
-        .catch(function(error) {
-          console.log("Service Worker gagal:", error);
-        });
-    });
-  }
-</script>
-  <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-      navigator.serviceWorker.register("/sw.js")
-        .then(function() {
-          console.log("Service Worker aktif.");
-        })
-        .catch(function(error) {
-          console.log("Service Worker gagal:", error);
-        });
-    });
-  }
-</script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("/sw.js")
+          .then(function() {
+            console.log("Service Worker aktif.");
+          })
+          .catch(function(error) {
+            console.log("Service Worker gagal:", error);
+          });
+      });
+    }
+  </script>
+
 </body>
 </html>
