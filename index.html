@@ -4,31 +4,100 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Petani Pintar</title>
+  <title>Petani Pintar - Aplikasi Jual Beli Hasil Panen Langsung dari Petani</title>
 
+  <meta name="description" content="Petani Pintar adalah aplikasi jual beli hasil panen langsung dari petani. Pembeli bisa mencari sayur, buah, cabai, beras, umbi, stok panen, harga terbaru, lokasi kebun, dan memesan langsung via WhatsApp." />
+  <meta name="keywords" content="Petani Pintar, aplikasi petani, hasil panen, jual beli hasil panen, sayur segar, buah segar, cabai, beras, umbi, produk petani, marketplace petani, panen lokal, petani Indonesia" />
+  <meta name="author" content="Petani Pintar" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#16883a" />
+
+  <link rel="canonical" href="https://petani-pintar.vercel.app/" />
   <link rel="manifest" href="/manifest.json" />
   <link rel="icon" href="/icon.svg" />
 
-  <meta name="theme-color" content="#16883a" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Petani Pintar" />
 
+  <meta property="og:title" content="Petani Pintar - Jual Beli Hasil Panen Langsung dari Petani" />
+  <meta property="og:description" content="Cari dan pesan hasil panen segar seperti sayur, buah, cabai, beras, dan umbi langsung dari petani terverifikasi." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://petani-pintar.vercel.app/" />
+  <meta property="og:image" content="https://petani-pintar.vercel.app/icon.svg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Petani Pintar - Aplikasi Hasil Panen Petani" />
+  <meta name="twitter:description" content="Petani Pintar membantu pembeli mendapatkan hasil panen segar langsung dari petani lokal." />
+  <meta name="twitter:image" content="https://petani-pintar.vercel.app/icon.svg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Petani Pintar",
+    "url": "https://petani-pintar.vercel.app/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web, Android, iOS",
+    "description": "Petani Pintar adalah aplikasi jual beli hasil panen langsung dari petani. Pembeli bisa mencari produk pertanian, melihat stok, harga, lokasi kebun, dan memesan melalui WhatsApp.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "IDR"
+    }
+  }
+  </script>
+
   <style>
+    :root {
+      --green: #16883a;
+      --green-dark: #0f6d2e;
+      --green-soft: #e8f8ee;
+      --green-soft-2: #eef8f1;
+      --orange: #ff9f1c;
+      --orange-dark: #e85d04;
+      --red: #d62828;
+      --red-soft: #ffe5e5;
+      --blue: #2f80ed;
+      --text: #222;
+      --muted: #666;
+      --muted-2: #777;
+      --bg: #f3f6f4;
+      --card: #ffffff;
+      --line: #dddddd;
+      --shadow: rgba(0, 0, 0, 0.08);
+      --shadow-strong: rgba(0, 0, 0, 0.18);
+    }
+
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f3f6f4;
-      color: #222;
+      background: var(--bg);
+      color: var(--text);
       padding-bottom: 90px;
     }
 
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
     .app-header {
-      background: linear-gradient(135deg, #16883a, #0f6d2e);
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
       color: white;
       padding: 22px 16px 28px;
       border-bottom-left-radius: 30px;
@@ -36,7 +105,7 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow: 0 5px 16px rgba(0,0,0,0.18);
+      box-shadow: 0 5px 16px var(--shadow-strong);
     }
 
     .top-row {
@@ -50,13 +119,15 @@
     .brand h1 {
       margin: 0;
       font-size: 32px;
-      font-weight: 800;
+      font-weight: 900;
+      letter-spacing: -0.5px;
     }
 
     .brand p {
       margin: 6px 0 0;
       font-size: 15px;
       opacity: 0.95;
+      line-height: 1.4;
     }
 
     .cart-btn {
@@ -75,11 +146,15 @@
       flex-shrink: 0;
     }
 
+    .cart-btn:active {
+      transform: scale(0.96);
+    }
+
     .cart-count {
       position: absolute;
       top: -4px;
       right: -4px;
-      background: #ff9f1c;
+      background: var(--orange);
       color: white;
       font-size: 12px;
       padding: 4px 8px;
@@ -101,13 +176,34 @@
       margin-top: 11px;
       font-size: 12px;
       color: rgba(255,255,255,0.92);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .container {
       max-width: 1100px;
       margin: auto;
       padding: 16px;
+    }
+
+    .seo-intro {
+      background: white;
+      border-radius: 20px;
+      padding: 18px;
+      margin-top: 16px;
+      box-shadow: 0 4px 14px var(--shadow);
+      line-height: 1.6;
+    }
+
+    .seo-intro h2 {
+      margin: 0 0 8px;
+      font-size: 21px;
+      color: var(--green-dark);
+    }
+
+    .seo-intro p {
+      margin: 0;
+      color: #555;
+      font-size: 14px;
     }
 
     .mode-box {
@@ -118,7 +214,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: -8px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 14px var(--shadow);
     }
 
     .mode-btn {
@@ -133,7 +229,7 @@
     }
 
     .mode-btn.active {
-      background: #16883a;
+      background: var(--green);
       color: white;
     }
 
@@ -142,7 +238,7 @@
       border-radius: 20px;
       padding: 18px;
       margin-top: 16px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 14px var(--shadow);
       display: flex;
       gap: 14px;
       align-items: center;
@@ -152,7 +248,7 @@
       width: 60px;
       height: 60px;
       border-radius: 18px;
-      background: #e8f8ee;
+      background: var(--green-soft);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -163,7 +259,7 @@
     .promo-card h2 {
       margin: 0 0 7px;
       font-size: 19px;
-      color: #176d32;
+      color: var(--green-dark);
     }
 
     .promo-card p {
@@ -190,7 +286,7 @@
     .section-title button {
       background: none;
       border: none;
-      color: #16883a;
+      color: var(--green);
       font-weight: bold;
       font-size: 14px;
       cursor: pointer;
@@ -216,9 +312,9 @@
     }
 
     .category.active {
-      border-color: #16883a;
-      color: #16883a;
-      background: #eef8f1;
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--green-soft-2);
     }
 
     .category .emoji {
@@ -248,11 +344,11 @@
     .service-card p {
       margin: 0;
       font-size: 14px;
-      color: #666;
+      color: var(--muted);
     }
 
     .service-badge {
-      background: #ff9f1c;
+      background: var(--orange);
       color: white;
       padding: 9px 13px;
       border-radius: 999px;
@@ -271,7 +367,7 @@
       background: white;
       border-radius: 20px;
       padding: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px var(--shadow);
       display: flex;
       gap: 14px;
       align-items: center;
@@ -281,7 +377,7 @@
       width: 60px;
       height: 60px;
       border-radius: 18px;
-      background: #e8f8ee;
+      background: var(--green-soft);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -291,19 +387,19 @@
 
     .seller-card h3 {
       margin: 0 0 5px;
-      color: #176d32;
+      color: var(--green-dark);
     }
 
     .seller-card p {
       margin: 0;
-      color: #666;
+      color: var(--muted);
       font-size: 13px;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .seller-card button {
       border: none;
-      background: #16883a;
+      background: var(--green);
       color: white;
       padding: 9px 12px;
       border-radius: 10px;
@@ -313,10 +409,10 @@
     }
 
     .result-info {
-      background: #eef8f1;
+      background: var(--green-soft-2);
       border-radius: 14px;
       padding: 12px;
-      color: #176d32;
+      color: var(--green-dark);
       font-weight: bold;
       font-size: 13px;
       margin-bottom: 13px;
@@ -333,7 +429,7 @@
       background: white;
       border-radius: 19px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px var(--shadow);
     }
 
     .product-img {
@@ -359,13 +455,13 @@
     .product-info h3 {
       margin: 0 0 7px;
       font-size: 16px;
-      color: #176d32;
+      color: var(--green-dark);
     }
 
     .verified {
       display: inline-block;
-      background: #e8f8ee;
-      color: #16883a;
+      background: var(--green-soft);
+      color: var(--green);
       padding: 4px 8px;
       border-radius: 999px;
       font-size: 11px;
@@ -375,13 +471,13 @@
 
     .seller {
       font-size: 12px;
-      color: #666;
+      color: var(--muted);
       margin-bottom: 8px;
       line-height: 1.4;
     }
 
     .seller-link {
-      color: #16883a;
+      color: var(--green);
       font-weight: bold;
       cursor: pointer;
     }
@@ -389,13 +485,13 @@
     .price {
       font-size: 16px;
       font-weight: bold;
-      color: #e85d04;
+      color: var(--orange-dark);
       margin-bottom: 4px;
     }
 
     .stock {
       font-size: 12px;
-      color: #777;
+      color: var(--muted-2);
       margin-bottom: 10px;
       line-height: 1.4;
     }
@@ -417,15 +513,15 @@
     }
 
     .tag.red {
-      background: #ffe5e5;
-      color: #d62828;
+      background: var(--red-soft);
+      color: var(--red);
     }
 
     .map-link {
       display: inline-block;
       margin-top: 6px;
-      background: #eef8f1;
-      color: #16883a;
+      background: var(--green-soft-2);
+      color: var(--green);
       padding: 7px 10px;
       border-radius: 999px;
       font-size: 12px;
@@ -450,13 +546,13 @@
     }
 
     .btn-order {
-      background: #16883a;
+      background: var(--green);
       color: white;
     }
 
     .btn-profile {
-      background: #eef8f1;
-      color: #16883a;
+      background: var(--green-soft-2);
+      color: var(--green);
     }
 
     .empty {
@@ -464,7 +560,7 @@
       border-radius: 18px;
       padding: 22px;
       text-align: center;
-      color: #777;
+      color: var(--muted-2);
       grid-column: 1 / -1;
       line-height: 1.5;
     }
@@ -473,18 +569,18 @@
       background: white;
       border-radius: 20px;
       padding: 17px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px var(--shadow);
       margin-bottom: 18px;
     }
 
     .form-card h3 {
       margin: 4px 0 12px;
-      color: #176d32;
+      color: var(--green-dark);
     }
 
     .form-note {
-      background: #eef8f1;
-      border-left: 4px solid #16883a;
+      background: var(--green-soft-2);
+      border-left: 4px solid var(--green);
       padding: 12px;
       border-radius: 10px;
       font-size: 13px;
@@ -495,7 +591,7 @@
 
     .form-warning {
       background: #fff4dc;
-      border-left: 4px solid #ff9f1c;
+      border-left: 4px solid var(--orange);
       padding: 12px;
       border-radius: 10px;
       font-size: 13px;
@@ -511,7 +607,7 @@
       padding: 13px;
       margin-bottom: 12px;
       border-radius: 12px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--line);
       font-size: 15px;
       outline: none;
       background: #fafafa;
@@ -525,7 +621,7 @@
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: #16883a;
+      border-color: var(--green);
       background: white;
     }
 
@@ -555,7 +651,7 @@
     }
 
     .submit-btn {
-      background: #16883a;
+      background: var(--green);
     }
 
     .submit-btn:disabled {
@@ -564,7 +660,7 @@
     }
 
     .geo-btn {
-      background: #2f80ed;
+      background: var(--blue);
     }
 
     .wa-btn {
@@ -572,11 +668,11 @@
     }
 
     .secondary-btn {
-      background: #176d32;
+      background: var(--green-dark);
     }
 
     .danger-btn {
-      background: #d62828;
+      background: var(--red);
     }
 
     .close-btn {
@@ -585,8 +681,8 @@
 
     .small-danger-btn {
       border: none;
-      background: #ffe5e5;
-      color: #d62828;
+      background: var(--red-soft);
+      color: var(--red);
       padding: 8px 10px;
       border-radius: 10px;
       font-weight: bold;
@@ -608,7 +704,7 @@
     }
 
     .summary-box strong {
-      color: #176d32;
+      color: var(--green-dark);
     }
 
     .modal-bg {
@@ -635,7 +731,7 @@
 
     .modal-card h2 {
       margin-top: 0;
-      color: #176d32;
+      color: var(--green-dark);
     }
 
     .modal-x {
@@ -643,8 +739,8 @@
       top: 0;
       float: right;
       border: none;
-      background: #ffe5e5;
-      color: #d62828;
+      background: var(--red-soft);
+      color: var(--red);
       width: 38px;
       height: 38px;
       border-radius: 50%;
@@ -666,7 +762,7 @@
       width: 70px;
       height: 70px;
       border-radius: 20px;
-      background: #e8f8ee;
+      background: var(--green-soft);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -680,7 +776,7 @@
 
     .profile-head p {
       margin: 0;
-      color: #666;
+      color: var(--muted);
       font-size: 13px;
       line-height: 1.45;
     }
@@ -703,7 +799,7 @@
 
     .stat-box strong {
       display: block;
-      color: #176d32;
+      color: var(--green-dark);
       font-size: 16px;
       margin-bottom: 3px;
     }
@@ -720,7 +816,7 @@
 
     .profile-product strong,
     .cart-item strong {
-      color: #176d32;
+      color: var(--green-dark);
     }
 
     .cart-row {
@@ -732,6 +828,33 @@
 
     .cart-info {
       flex: 1;
+    }
+
+    .seo-section {
+      background: white;
+      border-radius: 20px;
+      padding: 18px;
+      margin-top: 22px;
+      box-shadow: 0 4px 14px var(--shadow);
+      line-height: 1.65;
+    }
+
+    .seo-section h2 {
+      margin: 0 0 10px;
+      color: var(--green-dark);
+      font-size: 20px;
+    }
+
+    .seo-section h3 {
+      margin: 16px 0 8px;
+      color: #222;
+      font-size: 16px;
+    }
+
+    .seo-section p {
+      margin: 0 0 10px;
+      color: #555;
+      font-size: 14px;
     }
 
     .bottom-nav {
@@ -765,8 +888,8 @@
     }
 
     .bottom-nav a.active {
-      color: #16883a;
-      background: #e8f8ee;
+      color: var(--green);
+      background: var(--green-soft);
       border: 1px solid #bce8ca;
     }
 
@@ -783,6 +906,24 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
+    @media (max-width: 390px) {
+      .brand h1 {
+        font-size: 27px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-stats {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -795,7 +936,7 @@
         <p>Panen segar langsung dari petani</p>
       </div>
 
-      <button class="cart-btn" onclick="bukaKeranjang()">
+      <button class="cart-btn" onclick="bukaKeranjang()" aria-label="Buka keranjang">
         🛒
         <span id="cartCount" class="cart-count">0</span>
       </button>
@@ -807,6 +948,7 @@
       class="search-input"
       placeholder="🔍 Cari produk, petani, lokasi..."
       onkeyup="cariProduk()"
+      aria-label="Cari produk petani"
     />
 
     <div class="search-help">
@@ -815,6 +957,13 @@
   </header>
 
   <main class="container">
+
+    <section class="seo-intro">
+      <h2>Aplikasi Jual Beli Hasil Panen Petani</h2>
+      <p>
+        Petani Pintar membantu pembeli mencari produk panen lokal seperti sayur, buah, cabai, beras, dan umbi langsung dari petani terverifikasi. Data harga, stok, jadwal panen, dan lokasi kebun ditampilkan dari Google Sheet.
+      </p>
+    </section>
 
     <div class="mode-box">
       <button id="btnPembeli" class="mode-btn active" onclick="showMode('pembeli')">Saya Pembeli</button>
@@ -924,6 +1073,21 @@
           <button id="btnKirimOrder" class="submit-btn" type="submit">Kirim Pesanan</button>
         </form>
       </div>
+
+      <section class="seo-section">
+        <h2>Petani Pintar untuk Pembeli dan Petani Lokal</h2>
+        <p>
+          Petani Pintar dibuat untuk membantu pembeli menemukan hasil panen segar dari petani lokal. Pembeli bisa melihat produk, harga, stok, jadwal panen, satuan, dan lokasi kebun sebelum memesan.
+        </p>
+        <h3>Produk panen yang bisa dijual</h3>
+        <p>
+          Petani dapat menambahkan sayur, buah, cabai, beras, umbi, dan hasil panen lain. Produk baru masuk ke proses verifikasi admin sebelum tampil di halaman pembeli.
+        </p>
+        <h3>Pesanan langsung via WhatsApp</h3>
+        <p>
+          Setelah memilih produk, pembeli dapat mengisi jumlah pesanan, metode pengambilan, alamat, dan lokasi. Sistem akan membantu mengirim detail pesanan ke admin melalui WhatsApp.
+        </p>
+      </section>
 
     </section>
 
@@ -1148,6 +1312,23 @@
     let keranjang = [];
     let produkDipilih = null;
 
+    function escapeHTML(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function safeURL(value) {
+      const text = String(value || "").trim();
+      if (text.startsWith("https://") || text.startsWith("http://")) {
+        return text;
+      }
+      return "";
+    }
+
     function angkaSaja(value) {
       return String(value || "").replace(/[^\d]/g, "");
     }
@@ -1236,9 +1417,9 @@
     }
 
     function mapLinkHTML(item) {
-      const link = getMaps(item);
+      const link = safeURL(getMaps(item));
       if (!link) return "";
-      return `<a class="map-link" href="${link}" target="_blank">📍 Buka Lokasi Kebun</a>`;
+      return `<a class="map-link" href="${escapeHTML(link)}" target="_blank" rel="noopener">📍 Buka Lokasi Kebun</a>`;
     }
 
     async function kirimKeScript(data, tombol, teksLoading, teksNormal) {
@@ -1334,16 +1515,16 @@
         }).length;
 
         const mapsButton = petani.maps
-          ? `<br><a class="map-link" href="${petani.maps}" target="_blank">📍 Lokasi</a>`
+          ? `<br><a class="map-link" href="${escapeHTML(safeURL(petani.maps))}" target="_blank" rel="noopener">📍 Lokasi</a>`
           : "";
 
         sellerList.innerHTML += `
           <div class="seller-card">
             <div class="seller-avatar">${petani.avatar}</div>
             <div>
-              <h3>${petani.nama}</h3>
-              <p>✅ ${petani.status}<br>📍 ${petani.lokasi}<br>🌾 ${jumlahProduk} produk tersedia ${mapsButton}</p>
-              <button onclick="bukaProfilPetani('${petani.id}')">Lihat Profil</button>
+              <h3>${escapeHTML(petani.nama)}</h3>
+              <p>✅ ${escapeHTML(petani.status)}<br>📍 ${escapeHTML(petani.lokasi)}<br>🌾 ${jumlahProduk} produk tersedia ${mapsButton}</p>
+              <button onclick="bukaProfilPetani('${escapeHTML(petani.id)}')">Lihat Profil</button>
             </div>
           </div>
         `;
@@ -1373,34 +1554,34 @@
         const satuan = getSatuan(item);
         const panen = getPanen(item);
         const icon = getIcon(item);
-        const foto = getFoto(item);
+        const foto = safeURL(getFoto(item));
         const status = statusProduk(item);
 
         const gambarHTML = foto
-          ? `<img src="${foto}" alt="${namaProduk}" onerror="this.style.display='none'; this.parentElement.innerHTML='${icon}'">`
-          : icon;
+          ? `<img src="${escapeHTML(foto)}" alt="${escapeHTML(namaProduk)}" onerror="this.style.display='none'; this.parentElement.innerHTML='${escapeHTML(icon)}'">`
+          : escapeHTML(icon);
 
         const statusTag = status === "Stok Habis"
           ? `<span class="tag red">Stok Habis</span>`
-          : `<span class="tag">${status}</span>`;
+          : `<span class="tag">${escapeHTML(status)}</span>`;
 
         produkList.innerHTML += `
           <div class="product-card">
             <div class="product-img">${gambarHTML}</div>
             <div class="product-info">
               <span class="verified">✅ Terverifikasi</span>
-              <h3>${namaProduk}</h3>
+              <h3>${escapeHTML(namaProduk)}</h3>
               <div class="seller">
-                <span class="seller-link" onclick="bukaProfilPetani('${idPetani}')">${namaPetani}</span> • ${lokasi}<br>
-                Panen: ${panen}<br>
+                <span class="seller-link" onclick="bukaProfilPetani('${escapeHTML(idPetani)}')">${escapeHTML(namaPetani)}</span> • ${escapeHTML(lokasi)}<br>
+                Panen: ${escapeHTML(panen)}<br>
                 ${mapLinkHTML(item)}
               </div>
-              <div class="tag-row">${statusTag}<span class="tag">${satuan}</span></div>
-              <div class="price">${formatRupiahAngka(harga)} / ${satuan}</div>
-              <div class="stock">Stok ${formatAngka(stok)} ${satuan}</div>
+              <div class="tag-row">${statusTag}<span class="tag">${escapeHTML(satuan)}</span></div>
+              <div class="price">${formatRupiahAngka(harga)} / ${escapeHTML(satuan)}</div>
+              <div class="stock">Stok ${formatAngka(stok)} ${escapeHTML(satuan)}</div>
               <div class="product-buttons">
-                <button class="btn-order" onclick="pilihProduk('${idProduk}')">Pesan</button>
-                <button class="btn-profile" onclick="bukaProfilPetani('${idPetani}')">Petani</button>
+                <button class="btn-order" onclick="pilihProduk('${escapeHTML(idProduk)}')">Pesan</button>
+                <button class="btn-profile" onclick="bukaProfilPetani('${escapeHTML(idPetani)}')">Petani</button>
               </div>
             </div>
           </div>
@@ -1424,28 +1605,28 @@
       produkPetani.forEach(function(item) {
         produkHTML += `
           <div class="profile-product">
-            <strong>${getIcon(item)} ${getNamaProduk(item)}</strong><br>
-            ID Produk: ${item.id_produk || "-"}<br>
-            Harga: ${formatRupiahAngka(getHarga(item))} / ${getSatuan(item)}<br>
-            Stok: ${formatAngka(getStok(item))} ${getSatuan(item)}<br>
-            Panen: ${getPanen(item)}<br>
-            Status: ${statusProduk(item)}<br>
+            <strong>${escapeHTML(getIcon(item))} ${escapeHTML(getNamaProduk(item))}</strong><br>
+            ID Produk: ${escapeHTML(item.id_produk || "-")}<br>
+            Harga: ${formatRupiahAngka(getHarga(item))} / ${escapeHTML(getSatuan(item))}<br>
+            Stok: ${formatAngka(getStok(item))} ${escapeHTML(getSatuan(item))}<br>
+            Panen: ${escapeHTML(getPanen(item))}<br>
+            Status: ${escapeHTML(statusProduk(item))}<br>
             ${mapLinkHTML(item)}<br><br>
-            <button class="submit-btn" onclick="pilihProdukDariProfil('${item.id_produk || ""}')">Pesan Produk Ini</button>
+            <button class="submit-btn" onclick="pilihProdukDariProfil('${escapeHTML(item.id_produk || "")}')">Pesan Produk Ini</button>
           </div>
         `;
       });
 
       const mapsButton = petani.maps
-        ? `<a class="map-link" href="${petani.maps}" target="_blank">📍 Buka Lokasi Kebun</a>`
+        ? `<a class="map-link" href="${escapeHTML(safeURL(petani.maps))}" target="_blank" rel="noopener">📍 Buka Lokasi Kebun</a>`
         : "";
 
       document.getElementById("profileContent").innerHTML = `
         <div class="profile-head">
           <div class="profile-avatar">${petani.avatar}</div>
           <div>
-            <h2>${petani.nama}</h2>
-            <p>✅ ${petani.status}<br>📍 ${petani.lokasi}<br>${petani.catatan}<br>${mapsButton}</p>
+            <h2>${escapeHTML(petani.nama)}</h2>
+            <p>✅ ${escapeHTML(petani.status)}<br>📍 ${escapeHTML(petani.lokasi)}<br>${escapeHTML(petani.catatan)}<br>${mapsButton}</p>
           </div>
         </div>
 
@@ -1455,10 +1636,10 @@
           <div class="stat-box"><strong>📍</strong>Lokal</div>
         </div>
 
-        <h2>Produk dari ${petani.nama}</h2>
+        <h2>Produk dari ${escapeHTML(petani.nama)}</h2>
         ${produkHTML}
 
-        <button class="wa-btn" onclick="chatPetaniAdmin('${petani.nama}')">Tanya Admin tentang ${petani.nama}</button>
+        <button class="wa-btn" onclick="chatPetaniAdmin('${escapeHTML(petani.nama)}')">Tanya Admin tentang ${escapeHTML(petani.nama)}</button>
       `;
 
       document.getElementById("profileModal").style.display = "flex";
@@ -1652,10 +1833,10 @@
             <div class="cart-item">
               <div class="cart-row">
                 <div class="cart-info">
-                  <strong>${getIcon(item)} ${getNamaProduk(item)}</strong><br>
-                  ${getNamaPetani(item)} • ${getLokasi(item)}<br>
-                  Harga: ${formatRupiahAngka(getHarga(item))} / ${getSatuan(item)}<br>
-                  Stok: ${formatAngka(getStok(item))} ${getSatuan(item)}<br>
+                  <strong>${escapeHTML(getIcon(item))} ${escapeHTML(getNamaProduk(item))}</strong><br>
+                  ${escapeHTML(getNamaPetani(item))} • ${escapeHTML(getLokasi(item))}<br>
+                  Harga: ${formatRupiahAngka(getHarga(item))} / ${escapeHTML(getSatuan(item))}<br>
+                  Stok: ${formatAngka(getStok(item))} ${escapeHTML(getSatuan(item))}<br>
                   ${mapLinkHTML(item)}
                 </div>
                 <button class="small-danger-btn" onclick="hapusItemKeranjang(${index})">Hapus</button>
@@ -1991,7 +2172,6 @@
         alert("Harga dan stok harus lebih dari 0.");
         return;
       }
-
       if (!data.satuan) {
         alert("Pilih satuan produk.");
         return;
@@ -2016,11 +2196,14 @@
         "Halo Admin Petani Pintar, saya menambahkan produk baru.%0A%0A" +
         "ID Petani: " + data.id_petani + "%0A" +
         "Nama Petani: " + data.nama_petani + "%0A" +
+        "WhatsApp: " + data.whatsapp_petani + "%0A" +
         "Produk: " + data.produk + "%0A" +
+        "Kategori: " + data.kategori + "%0A" +
         "Harga: " + formatRupiahAngka(data.harga) + " / " + data.satuan + "%0A" +
         "Stok: " + formatAngka(data.stok) + " " + data.satuan + "%0A" +
         "Jadwal Panen: " + data.jadwal_panen + "%0A" +
-        "Status: Menunggu Verifikasi";
+        "Status: Menunggu Verifikasi%0A" +
+        "Maps: " + data.link_maps;
 
       window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
 
@@ -2075,17 +2258,19 @@
         return;
       }
 
-      alert("Produk berhasil diupdate. Perubahan tercatat di Log_Perubahan dan admin menerima email.");
+      alert("Produk berhasil diupdate. Perubahan tercatat dan admin menerima notifikasi.");
 
       const pesan =
         "Halo Admin Petani Pintar, saya update produk.%0A%0A" +
         "ID Produk: " + data.id_produk + "%0A" +
         "ID Petani: " + data.id_petani + "%0A" +
+        "WhatsApp: " + data.whatsapp_petani + "%0A" +
         "Harga Baru: " + (data.harga ? formatRupiahAngka(data.harga) : "-") + "%0A" +
         "Stok Baru: " + (data.stok ? formatAngka(data.stok) : "-") + "%0A" +
         "Satuan: " + (data.satuan || "-") + "%0A" +
         "Jadwal: " + (data.jadwal_panen || "-") + "%0A" +
         "Status Panen: " + (data.status_panen || "-") + "%0A" +
+        "Foto Produk: " + (data.foto_produk || "-") + "%0A" +
         "Catatan: " + (data.catatan || "-");
 
       window.open("https://wa.me/" + NOMOR_ADMIN + "?text=" + pesan, "_blank");
@@ -2114,13 +2299,17 @@
       });
     }
 
-    ambilKeranjang();
-    updateKeranjang();
-    ambilProdukDariSheet();
-
-    setInterval(function() {
+    function initApp() {
+      ambilKeranjang();
+      updateKeranjang();
       ambilProdukDariSheet();
-    }, 60000);
+
+      setInterval(function() {
+        ambilProdukDariSheet();
+      }, 60000);
+    }
+
+    initApp();
   </script>
 
   <script>
